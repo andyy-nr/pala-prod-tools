@@ -70,7 +70,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGap(0, 269, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Sin terminar", jPanel3);
+        jTabbedPane1.addTab("Terminado", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
