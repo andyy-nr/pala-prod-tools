@@ -33,13 +33,23 @@ public class FormStart extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/iconos/PALA (1).png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/PALA_logo.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(239, 237, 231));
 
         buttonLogin.setText("Log in");
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonSignin.setText("Sign in");
+        buttonSignin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSigninActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -80,6 +90,16 @@ public class FormStart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        new FormLogin().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
+        new FormSignIn().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_buttonSigninActionPerformed
 
     /**
      * @param args the command line arguments

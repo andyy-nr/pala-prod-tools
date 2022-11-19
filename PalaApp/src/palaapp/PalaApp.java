@@ -4,6 +4,8 @@
  */
 package palaapp;
 
+import presentations.FormStart;
+
 /**
  *
  * @author Maria del Carmen
@@ -14,7 +16,7 @@ public class PalaApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        new FormStart().setVisible(true);
     }
     
 }

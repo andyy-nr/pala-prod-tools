@@ -42,7 +42,7 @@
     <Component class="javax.swing.JLabel" name="labelLogo">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/presentations/iconos/PALA (1).png"/>
+          <Image iconType="3" name="/presentations/icons/PALA_logo.png"/>
         </Property>
       </Properties>
     </Component>
@@ -83,11 +83,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Log in"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonLoginActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="buttonSignin">
           <Properties>
             <Property name="text" type="java.lang.String" value="Sign in"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonSigninActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
