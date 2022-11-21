@@ -77,12 +77,15 @@ public class FormSignIn extends javax.swing.JFrame {
         labelEmail.setText("Email");
 
         buttonSignin.setText("Sign in");
+        buttonSignin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
         buttonSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSigninActionPerformed(evt);
             }
         });
 
+        buttonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Retroceder.png"))); // NOI18N
+        buttonBack.setBorder(null);
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBackActionPerformed(evt);
@@ -113,9 +116,9 @@ public class FormSignIn extends javax.swing.JFrame {
             .addGroup(panelSigninLayout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addComponent(buttonSignin)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
             .addGroup(panelSigninLayout.createSequentialGroup()
-                .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(buttonBack)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         panelSigninLayout.setVerticalGroup(
@@ -144,7 +147,7 @@ public class FormSignIn extends javax.swing.JFrame {
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonSignin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,6 +171,7 @@ public class FormSignIn extends javax.swing.JFrame {
 
     private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
         // TODO add your handling code here:
+        System.out.println("se acrubi");
         StudentDao studentD = new StudentDao();
         Student student = new Student();
         Scanner lector = new Scanner(System.in);

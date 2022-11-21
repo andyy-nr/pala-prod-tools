@@ -76,18 +76,21 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         buttonAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
+        buttonAdd1.setBorder(null);
         buttonAdd1.setFocusable(false);
         buttonAdd1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonAdd1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(buttonAdd1);
 
         buttonEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
+        buttonEdit1.setBorder(null);
         buttonEdit1.setFocusable(false);
         buttonEdit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonEdit1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(buttonEdit1);
 
         buttonDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
+        buttonDelete1.setBorder(null);
         buttonDelete1.setFocusable(false);
         buttonDelete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -109,7 +112,7 @@ public class FormLists extends javax.swing.JFrame {
             .addGroup(jpanelNotStartedLayout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

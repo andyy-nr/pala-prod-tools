@@ -42,6 +42,7 @@ public class FormStart extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(239, 237, 231));
 
         buttonLogin.setText("Log in");
+        buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
@@ -49,6 +50,7 @@ public class FormStart extends javax.swing.JFrame {
         });
 
         buttonSignin.setText("Sign in");
+        buttonSignin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
         buttonSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSigninActionPerformed(evt);
