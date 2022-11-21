@@ -19,6 +19,24 @@ public class StudentDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
     private ArrayList<Student> arrayStd = new ArrayList<>();
+    
+    public boolean sigIn(Student std){
+        boolean save = false;
+        this.getRegisters();
+        try{
+            rs.moveToInsertRow();
+            rs.updateString("Firstname", std.getName());
+            rs.updateString("Lastname", std.getLastNames());
+            rs.updateString("Email", std.getEmail());
+            rs.updateString("Password", std.getPassword());
+            rs.updateString("Username", std.getUserName());
+            rs.insertRow();
+            rs.moveToCurrentRow();
+        }catch (SQLException ex){
+            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+        return save;
+    }
 
     /*Adds an object Student to an arrayList 
     called arrayStd*/
