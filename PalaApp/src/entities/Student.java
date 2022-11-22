@@ -20,7 +20,8 @@ public class Student {
 
     }
 
-    public Student(int Id, int tabId, int status, String name, String lastNames, String email, String userName, String password) {
+    public Student(int Id, int tabId, int status, String name, String lastNames, 
+            String email, String userName, String password) {
         this.Id = Id;
         this.tabId = tabId;
         this.status = status;
@@ -30,7 +31,18 @@ public class Student {
         this.userName = userName;
         this.password = password;
     }
-
+    
+     public Student(int status, String name, String lastNames, 
+            String email, String userName, String password) {
+        this.status = status;
+        this.name = name;
+        this.lastNames = lastNames;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+    }
+    
+    
     public int getId() {
         return Id;
     }
