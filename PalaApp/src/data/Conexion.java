@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package data;
-
+// pala
 import java.sql.*;
 
 public class Conexion {
@@ -14,7 +14,7 @@ public class Conexion {
     private static Connection con = null;
     private static final String URL = "jdbc:sqlserver://localhost;databaseName=PALA;Persist Security Info=True;";
     private static final String USER = "sa";
-    private static final String PASSWORD = "1234";
+    private static final String PASSWORD = "123";
     
     //constructor
     private Conexion() {

@@ -36,15 +36,15 @@ public class FormSignIn extends javax.swing.JFrame {
 
                 return true;
             } else {
-                JOptionPane.showMessageDialog(this, "La contraseña debe contener números "
-                        + "y mayúsculas");
+                JOptionPane.showMessageDialog(this, "The password "
+                        + "must have numbers and capital letters");
                 this.txtPassword.setText("");
                 this.txtPassword.requestFocus();
                 return false;
             }
         } else {
-            JOptionPane.showMessageDialog(this, "La contraseña debe tener 8 o "
-                    + "más digitos");
+            JOptionPane.showMessageDialog(this, "The password"
+                    + "must have 8 letters or more");
             this.txtPassword.setText("");
             this.txtPassword.requestFocus();
             return false;
@@ -198,12 +198,17 @@ public class FormSignIn extends javax.swing.JFrame {
                 String lastName = this.txtLName.getText();
                 String mail = this.txtEmail.getText();
                 clean();
-
-                Student student = new Student();
+                int status = 1;
+                int id_tablero = 0;
+                Student student = new Student(status, name,
+                        lastName, mail, user,
+                        pw);
+                
+                studentD.addStudent(student);
+                studentD.saveStudent(student);
             }
 
         }
-
 
     }//GEN-LAST:event_buttonSigninActionPerformed
 

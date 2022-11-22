@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import entities.Student;
+import java.sql.Statement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +19,7 @@ public class StudentDao {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
+    BoardDao board = new BoardDao();
     private ArrayList<Student> arrayStd = new ArrayList<>();
     
     public boolean sigIn(Student std){
@@ -51,7 +53,7 @@ public class StudentDao {
                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT);
             rs = ps.executeQuery();
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -79,4 +81,39 @@ public class StudentDao {
     public void setArrayStd(ArrayList<Student> arrayStd) {
         this.arrayStd = arrayStd;
     }
+    
+    public boolean saveStudent(Student a) {
+        boolean guardado = false;
+        this.getRegisters();
+        try {
+            Statement st = conn.createStatement();
+            int idBoard = board.getIdfromLast(); 
+            st.executeUpdate("INSERT INTO Estudiantes " + 
+               "VALUES" + idBoard +", " + a.getStatus()+", " + a.getName() +", " + a.getEmail()  
+            +", " + a.getUserName() +", " + a.getPassword());
+            guardado = true;
+            
+        } catch (SQLException ex) {
+            System.out.println("Error al guardar autor: " + ex.getMessage());
+        } 
+        finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (ps != null) {
+                    ps.close();
+                }
+
+                if (conn != null) {
+                    Conexion.closeConexion(conn);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return guardado;
+    }
+
 }
