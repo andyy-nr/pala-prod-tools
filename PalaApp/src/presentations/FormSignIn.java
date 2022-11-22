@@ -6,33 +6,51 @@ package presentations;
  */
 import datos.StudentDao;
 import entities.Student;
-import java.util.Scanner;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class FormSignIn extends javax.swing.JFrame {
 
-    public static boolean isSure(String password) {
-        if (password.length() > 8) {
-            boolean mayuscula = false;
-            boolean numero = false;
-            char c;
+    StudentDao studentD = new StudentDao();
+
+    public boolean isSure(String password) {
+        boolean mayuscula = false;
+        boolean numero = false;
+        char c;
+
+        if (password.length() >= 8) {
 
             for (int i = 0; i < password.length(); i++) {
                 c = password.charAt(i);
-                if (Character.isDigit(c))
+                if (Character.isDigit(c)) {
+
                     numero = true;
-                if (Character.isUpperCase(c))
+                }
+                if (Character.isUpperCase(c)) {
+
                     mayuscula = true;
+                }
+
             }
-            if (numero && mayuscula)
+            if (numero && mayuscula) {
+
                 return true;
-            else
+            } else {
+                JOptionPane.showMessageDialog(this, "La contraseña debe contener números "
+                        + "y mayúsculas");
+                this.txtPassword.setText("");
+                this.txtPassword.requestFocus();
                 return false;
+            }
         } else {
+            JOptionPane.showMessageDialog(this, "La contraseña debe tener 8 o "
+                    + "más digitos");
+            this.txtPassword.setText("");
+            this.txtPassword.requestFocus();
             return false;
+
         }
     }
-    
 
     public FormSignIn() {
         initComponents();
@@ -171,36 +189,20 @@ public class FormSignIn extends javax.swing.JFrame {
 
     private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
         // TODO add your handling code here:
-        System.out.println("se acrubi");
-        StudentDao studentD = new StudentDao();
-        Student student = new Student();
-        Scanner lector = new Scanner(System.in);
-        String password = "";
-        password = lector.next();
-        txtPassword.setText(password);
-        if (txtFName.getText().equals("") || (txtLName.getText().equals("")) || (txtPassword.getText().equals("")) || (txtUser.getText().equals(""))
-           || (txtEmail.getText().equals(""))) {
-            
-            javax.swing.JOptionPane.showMessageDialog(this,"Debe llenar todos los campos \n","AVISO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            txtFName.requestFocus();
+        if (allCompleted()) {
+            String user = this.txtFName.getText();
+            String pw = String.valueOf(this.txtPassword.getPassword());
+
+            if (isValid(user, pw)) {
+                String name = this.txtFName.getText();
+                String lastName = this.txtLName.getText();
+                String mail = this.txtEmail.getText();
+                clean();
+
+                Student student = new Student();
+            }
+
         }
-        if (isSure(password)) {
-            
-            student.setUserName(txtUser.getText());
-            student.setPassword(txtPassword.getText());
-            student.setName(txtFName.getText());
-            student.setLastNames(txtLName.getText());
-            student.setEmail(txtEmail.getText());
-            student.setId(1);
-            if (studentD.sigIn(student)){
-                JOptionPane.showMessageDialog(null, "Registro guardado");
-            } else{
-                JOptionPane.showMessageDialog(null, "Error, no se pudo registrar");
-            }    
-        } else {
-            JOptionPane.showMessageDialog(null, "La contraseña no es segura");
-        }
-        
 
 
     }//GEN-LAST:event_buttonSigninActionPerformed
@@ -208,19 +210,21 @@ public class FormSignIn extends javax.swing.JFrame {
     private void txtFNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNameKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if((c < 'a' || c > 'z') && (c<'A' || c >'Z')&& (c<' ' || c >' '))evt.consume();
-        
+        if ((c < 'a' || c > 'z') && (c < 'A' || c > 'Z') && (c < ' ' || c > ' ')) {
+            evt.consume();
+        }
+
     }//GEN-LAST:event_txtFNameKeyTyped
-    private void clean(){
+    private void clean() {
         txtUser.setText("");
         txtFName.setText("");
         txtLName.setText("");
         txtPassword.setText("");
         txtEmail.setText("");
-        
-        
+        txtFName.requestFocus();
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -257,6 +261,7 @@ public class FormSignIn extends javax.swing.JFrame {
                 new FormSignIn().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -274,4 +279,47 @@ public class FormSignIn extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
+
+    private boolean isValid(String user, String pw) {
+
+        if (isSure(pw) && userSure(user)) {
+
+            return true;
+        }
+        return false;
+
+    }
+
+    private boolean userSure(String userName) {
+        ArrayList<Student> stdList = this.studentD.getArrayStd();
+
+        for (Student std : stdList) {
+            System.out.println("Dentro del For");
+            if (userName == std.getUserName()) {
+
+                this.txtUser.setText("");
+                this.txtUser.requestFocus();
+                JOptionPane.showMessageDialog(this, "Nombre de usuario "
+                        + "no disponible");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean allCompleted() {
+
+        if (this.txtLName.getText().equals("") || this.txtFName.getText().equals("")
+                || this.txtEmail.getText().equals("")
+                || this.txtPassword.getText().equals("")
+                || this.txtUser.getText().equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+
+            return false;
+        } else {
+            return true;
+
+        }
+
+    }
 }
