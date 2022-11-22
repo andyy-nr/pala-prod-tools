@@ -4,7 +4,7 @@ package presentations;
  *
  * @author Maria del Carmen
  */
-import datos.StudentDao;
+import data.StudentDao;
 import entities.Student;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
