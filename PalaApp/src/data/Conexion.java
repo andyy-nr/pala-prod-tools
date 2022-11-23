@@ -14,7 +14,7 @@ public class Conexion {
     private static Connection con = null;
     private static final String URL = "jdbc:sqlserver://localhost;databaseName=PALA;Persist Security Info=True;";
     private static final String USER = "sa";
-    private static final String PASSWORD = "123";
+    private static final String PASSWORD = "1234";
     
     //constructor
     private Conexion() {
@@ -67,7 +67,7 @@ public class Conexion {
         } 
         catch (SQLException e) {
            con=null;
-           System.out.println("Error al establecer la conexion:" +e.getMessage());
+           System.out.println("Error al establecer la conexion:" +e.getMessage()+ "es aqui");
        }
     }
     

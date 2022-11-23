@@ -87,7 +87,7 @@ public class BoardDao {
             rs.moveToCurrentRow();
             guardado = true;
         } catch (SQLException ex) {
-            System.out.println("Error al guardar autor: " + ex.getMessage());
+            System.out.println("Error al guardar tablero: " + ex.getMessage());
         } 
         finally {
             try {

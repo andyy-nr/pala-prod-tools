@@ -199,13 +199,12 @@ public class FormSignIn extends javax.swing.JFrame {
                 String mail = this.txtEmail.getText();
                 clean();
                 int status = 1;
-                int id_tablero = 0;
                 Student student = new Student(status, name,
                         lastName, mail, user,
                         pw);
                 
                 studentD.addStudent(student);
-                studentD.saveStudent(student);
+                studentD.signIn(student);
             }
 
         }
@@ -299,7 +298,6 @@ public class FormSignIn extends javax.swing.JFrame {
         ArrayList<Student> stdList = this.studentD.getArrayStd();
 
         for (Student std : stdList) {
-            System.out.println("Dentro del For");
             if (userName == std.getUserName()) {
 
                 this.txtUser.setText("");

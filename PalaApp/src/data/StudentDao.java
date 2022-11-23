@@ -15,22 +15,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StudentDao {
-
+    
+    String[] columns = {"TableroID", "Estado", "Nombre", "Apellidos", "Correo",
+             "Nomusuario", "Contraseña"};
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
     BoardDao board = new BoardDao();
     private ArrayList<Student> arrayStd = new ArrayList<>();
     
-    public boolean sigIn(Student std){
+    public boolean signIn(Student std){
         boolean save = false;
         this.getRegisters();
+        int idBoard = board.getIdfromLast();
         try{
-            rs.updateString("Firstname", std.getName());
-            rs.updateString("Lastname", std.getLastNames());
-            rs.updateString("Email", std.getEmail());
-            rs.updateString("Password", std.getPassword());
+            rs.updateInt("TableroId",idBoard);
+            rs.updateInt("Estado", std.getStatus());
+            rs.updateString("Nombre", std.getName());
+            rs.updateString("Apellidos", std.getLastNames());
+            rs.updateString("Correo", std.getEmail());
             rs.updateString("Username", std.getUserName());
+            rs.updateString("Password", std.getPassword());
         }catch (SQLException ex){
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
         }  
@@ -67,7 +72,7 @@ public class StudentDao {
                 rs.getString("Nombre"), rs.getString("Apellidos"), rs.getString("Correo"), rs.getString("Nomusuario"),
                 rs.getString("Contraseña"));
                  this.addStudent(student);
-            };
+            }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -88,13 +93,15 @@ public class StudentDao {
         try {
             Statement st = conn.createStatement();
             int idBoard = board.getIdfromLast(); 
+            System.out.println(idBoard);
             st.executeUpdate("INSERT INTO Estudiantes " + 
-               "VALUES" + idBoard +", " + a.getStatus()+", " + a.getName() +", " + a.getEmail()  
-            +", " + a.getUserName() +", " + a.getPassword());
-            guardado = true;
+            "VALUES(" + idBoard +", " + a.getStatus() +", '" + a.getName() +"', '" + a.getEmail()  
+            +"', '" + a.getUserName() +"', '" + a.getPassword() + "')", columns);
+            
+                         guardado = true;
             
         } catch (SQLException ex) {
-            System.out.println("Error al guardar autor: " + ex.getMessage());
+            System.out.println("Error al guardar Estudiante: " + ex.getMessage());
         } 
         finally {
             try {
@@ -103,7 +110,7 @@ public class StudentDao {
                 }
 
                 if (ps != null) {
-                    ps.close();
+//                    ps.close();
                 }
 
                 if (conn != null) {
