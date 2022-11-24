@@ -21,7 +21,7 @@ public class StudentDao {
     ResultSet rs = null;
     private ArrayList<Student> arrayStd = new ArrayList<>();
 
-    public boolean sigIn(Student std) {
+    public boolean signIn(Student std) {
         boolean save = false;
         this.getRegisters();
         try {
@@ -40,7 +40,6 @@ public class StudentDao {
     called arrayStd*/
     public void addStudent(Student std) {
         arrayStd.add(std);
-
     }
 
     /*Gets the records from the table Student */
@@ -59,7 +58,7 @@ public class StudentDao {
 
     public ArrayList<Student> getData() {
         this.getRegisters();
-        ArrayList<Student> result = new ArrayList<Student>();
+        ArrayList<Student> result = new ArrayList<>();
         try {
             while (rs.next()) {
                 Student student = new Student(
@@ -125,4 +124,15 @@ public class StudentDao {
         return guardado;
     }
 
+    /*
+    public Student getStudentFromID(int id){
+        ArrayList<Student> data = this.getData();
+        for (Student std : data){
+            if (std.getId() == id){
+                return std;
+            }
+        }
+        return null;
+    }
+    */
 }

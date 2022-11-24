@@ -2,7 +2,6 @@ package entities;
 
 import java.util.Date;
 
-
 /**
  * @author lopez
  * @version 1.0
@@ -10,26 +9,37 @@ import java.util.Date;
  */
 public class Task {
 
-	private String description;
-	private StatusTask status;
-	private int timeLeft;
-	private Date vencimiento;
+    private String description;
+    private StatusTask status;
+    private int timeLeft;
+    private Date vencimiento;
 
-	public Task(){
+    public Task() {
 
-	}
+    }
+
+    public Task(String description, StatusTask status, Date vencimiento, int timeLeft) {
+        this.description = description;
+        this.status = status;
+        this.vencimiento = vencimiento;
+        this.timeLeft = timeLeft;
+    }
+
+    public void edit() {
+
+    }
+
+    public void delete() {
+
+    }
+
+    public void move() {
+
+    }
+    
+    public void daysLeft(){
         
-	public void edit(){
-
-	}
-
-	public void delete(){
-
-	}
-
-	public void move(){
-
-	}
+    }
 
     public String getDescription() {
         return description;
@@ -62,6 +72,5 @@ public class Task {
     public void setVencimiento(Date vencimiento) {
         this.vencimiento = vencimiento;
     }
-        
-        
+
 }//end Task

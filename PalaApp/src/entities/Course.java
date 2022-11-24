@@ -2,7 +2,6 @@ package entities;
 
 import java.util.ArrayList;
 
-
 /**
  * @author lopez
  * @version 1.0
@@ -10,12 +9,16 @@ import java.util.ArrayList;
  */
 public class Course {
 
-	private String name;
-        private ArrayList<Task> tasks;
-        
-	public Course(){
+    private String name;
+    private ArrayList<Task> tasks;
 
-	}
+    public Course() {
+
+    }
+
+    public Course(String name) {
+        this.name = name;
+    }
 
     public String getName() {
         return name;
@@ -32,8 +35,5 @@ public class Course {
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
-        
-        
-
 
 }//end Course

@@ -4,6 +4,10 @@
  */
 package presentations;
 
+import data.StudentDao;
+import entities.Student;
+import java.awt.HeadlessException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,9 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class FormLogin extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrmInicioSesion
-     */
+    StudentDao stdDao = new StudentDao();
     public FormLogin() {
         initComponents();
     }
@@ -120,8 +122,20 @@ public class FormLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        if (allCompleted()) {
-
+        this.allCompleted();
+        try {
+            String user = this.fieldUsername.getText();
+            String pw = String.valueOf(this.pwfieldPassword.getPassword());
+            ArrayList<Student> stdData = stdDao.getData();
+            for(Student std : stdData){
+                if(std.getUserName().equals(user) && std.getPassword().equals(pw)){
+                    new FormLists(std.getId()).setVisible(true);
+                    this.setVisible(false);
+                }
+            }
+            
+        } catch (HeadlessException ex) {
+            System.out.println("Ocurrio un error al iniciar sesión: " + ex.getMessage());
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
@@ -172,9 +186,9 @@ public class FormLogin extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private boolean allCompleted() {
-        if (this.fieldUsername.getText().equals("") 
-            || String.valueOf(this.pwfieldPassword.getPassword()).equals("")) {
-                JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+        if (this.fieldUsername.getText().equals("")
+                || String.valueOf(this.pwfieldPassword.getPassword()).equals("")) {
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
             return false;
         } else {
             return true;

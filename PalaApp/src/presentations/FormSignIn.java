@@ -4,6 +4,7 @@ package presentations;
  *
  * @author Maria del Carmen
  */
+import data.CourseDao;
 import data.StudentDao;
 import entities.Student;
 import java.awt.HeadlessException;
@@ -13,45 +14,7 @@ import javax.swing.JOptionPane;
 public class FormSignIn extends javax.swing.JFrame {
 
     StudentDao studentD = new StudentDao();
-
-    public boolean isSure(String password) {
-        boolean mayuscula = false;
-        boolean numero = false;
-        char c;
-
-        if (password.length() >= 8) {
-
-            for (int i = 0; i < password.length(); i++) {
-                c = password.charAt(i);
-                if (Character.isDigit(c)) {
-
-                    numero = true;
-                }
-                if (Character.isUpperCase(c)) {
-
-                    mayuscula = true;
-                }
-
-            }
-            if (numero && mayuscula) {
-
-                return true;
-            } else {
-                JOptionPane.showMessageDialog(this, "The password "
-                        + "must have numbers and capital letters");
-                this.txtPassword.setText("");
-                this.txtPassword.requestFocus();
-                return false;
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "The password"
-                    + "must have 8 letters or more");
-            this.txtPassword.setText("");
-            this.txtPassword.requestFocus();
-            return false;
-
-        }
-    }
+    CourseDao courseD = new CourseDao();
 
     public FormSignIn() {
         initComponents();
@@ -189,9 +152,8 @@ public class FormSignIn extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonBackActionPerformed
 
     private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
-        // TODO add your handling code here:
-        
-        if (allCompleted()) {
+        this.allCompleted();
+        try{
             String user = this.txtUser.getText();
             String pw = String.valueOf(this.txtPassword.getPassword());
 
@@ -204,33 +166,16 @@ public class FormSignIn extends javax.swing.JFrame {
                 Student student = new Student(status, name,
                         lastName, mail, user,
                         pw);
+
+                studentD.addStudent(student);
+                studentD.saveStudent(student);
+                courseD.saveCourse(); 
                 
-                studentD.addStudent(student);
-                studentD.saveStudent(student);
             }
-
+        }catch(HeadlessException ex){
+            System.out.println("Error al intentar guardar: " + ex.getMessage());
         }
-         /*
-        try {
-            String user = this.txtUser.getText();
-            String pw = String.valueOf(this.txtPassword.getPassword());
 
-            if (isValid(user, pw)) {
-                String name = this.txtFName.getText();
-                String lastName = this.txtLName.getText();
-                String mail = this.txtEmail.getText();
-                clean();
-                int status = 1;
-                Student student = new Student(status, name,
-                        lastName, mail, user,
-                        pw);
-
-                studentD.addStudent(student);
-                studentD.saveStudent(student);
-            }
-        } catch (HeadlessException ex) {
-            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
-        }*/
     }//GEN-LAST:event_buttonSigninActionPerformed
 
     private void txtFNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNameKeyTyped
@@ -348,4 +293,44 @@ public class FormSignIn extends javax.swing.JFrame {
         }
 
     }
+
+    public boolean isSure(String password) {
+        boolean mayuscula = false;
+        boolean numero = false;
+        char c;
+
+        if (password.length() >= 8) {
+
+            for (int i = 0; i < password.length(); i++) {
+                c = password.charAt(i);
+                if (Character.isDigit(c)) {
+
+                    numero = true;
+                }
+                if (Character.isUpperCase(c)) {
+
+                    mayuscula = true;
+                }
+
+            }
+            if (numero && mayuscula) {
+
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(this, "The password "
+                        + "must have numbers and capital letters");
+                this.txtPassword.setText("");
+                this.txtPassword.requestFocus();
+                return false;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "The password"
+                    + "must have 8 letters or more");
+            this.txtPassword.setText("");
+            this.txtPassword.requestFocus();
+            return false;
+
+        }
+    }
+    
 }

@@ -4,13 +4,13 @@
  */
 package data;
 
+import entities.Task;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import entities.Course;
-import java.sql.Statement;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,8 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Andrea Nunez
  */
-public class CourseDao {
-
+public class TaskDao {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
@@ -47,12 +46,14 @@ public class CourseDao {
         }
     }
 
-    public ArrayList<Course> getData() {
+    public ArrayList<Task> getData() {
         this.getRegisters();
-        ArrayList<Course> result = new ArrayList<>();
+        ArrayList<Task> result = new ArrayList<>();
         try {
             while (rs.next()) {
-                Course course = new Course(rs.getString("Nombre"));
+                Task task = new Task(
+                        rs.getString("Nombre")
+                );
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
