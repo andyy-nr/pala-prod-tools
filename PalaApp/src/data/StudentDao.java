@@ -19,7 +19,6 @@ public class StudentDao {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    BoardDao board = new BoardDao();
     private ArrayList<Student> arrayStd = new ArrayList<>();
 
     public boolean sigIn(Student std) {
@@ -56,7 +55,6 @@ public class StudentDao {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-
     }
 
     public ArrayList<Student> getData() {
@@ -64,8 +62,12 @@ public class StudentDao {
         ArrayList<Student> result = new ArrayList<Student>();
         try {
             while (rs.next()) {
-                Student student = new Student(rs.getInt("EstudianteID"), rs.getInt("Estado"),
-                        rs.getString("Nombre"), rs.getString("Apellidos"), rs.getString("Correo"),
+                Student student = new Student(
+                        rs.getInt("EstudianteID"), 
+                        rs.getInt("Estado"),
+                        rs.getString("Nombre"), 
+                        rs.getString("Apellidos"), 
+                        rs.getString("Correo"),
                         rs.getString("Nomusuario"),
                         rs.getString("Contraseña"));
                 result.add(student);
@@ -75,10 +77,7 @@ public class StudentDao {
        
     }
         return result;
-
     }
-
-    
 
     public ArrayList<Student> getArrayStd() {
         return arrayStd;
@@ -105,7 +104,7 @@ public class StudentDao {
             guardado = true;
 
         } catch (SQLException ex) {
-            System.out.println("Error trying to save studentd" + ex.getMessage());
+            System.out.println("Error trying to save student " + ex.getMessage());
         } finally {
             try {
                 if (rs != null) {

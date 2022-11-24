@@ -4,17 +4,15 @@ package presentations;
  *
  * @author Maria del Carmen
  */
-import data.BoardDao;
 import data.StudentDao;
-import entities.Board;
 import entities.Student;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class FormSignIn extends javax.swing.JFrame {
 
     StudentDao studentD = new StudentDao();
-    
 
     public boolean isSure(String password) {
         boolean mayuscula = false;
@@ -192,6 +190,7 @@ public class FormSignIn extends javax.swing.JFrame {
 
     private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
         // TODO add your handling code here:
+        
         if (allCompleted()) {
             String user = this.txtUser.getText();
             String pw = String.valueOf(this.txtPassword.getPassword());
@@ -211,7 +210,27 @@ public class FormSignIn extends javax.swing.JFrame {
             }
 
         }
+         /*
+        try {
+            String user = this.txtUser.getText();
+            String pw = String.valueOf(this.txtPassword.getPassword());
 
+            if (isValid(user, pw)) {
+                String name = this.txtFName.getText();
+                String lastName = this.txtLName.getText();
+                String mail = this.txtEmail.getText();
+                clean();
+                int status = 1;
+                Student student = new Student(status, name,
+                        lastName, mail, user,
+                        pw);
+
+                studentD.addStudent(student);
+                studentD.saveStudent(student);
+            }
+        } catch (HeadlessException ex) {
+            JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+        }*/
     }//GEN-LAST:event_buttonSigninActionPerformed
 
     private void txtFNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFNameKeyTyped
@@ -299,8 +318,8 @@ public class FormSignIn extends javax.swing.JFrame {
     }
 
     private boolean userSure(String userName) {
-       ArrayList<Student> stdList = studentD.getData();
-        
+        ArrayList<Student> stdList = studentD.getData();
+
         for (Student std : stdList) {
             System.out.println(userName);
             if (userName.equals(std.getUserName())) {
@@ -318,7 +337,7 @@ public class FormSignIn extends javax.swing.JFrame {
 
         if (this.txtLName.getText().equals("") || this.txtFName.getText().equals("")
                 || this.txtEmail.getText().equals("")
-                || this.txtPassword.getText().equals("")
+                || String.valueOf(this.txtPassword.getPassword()).equals("")
                 || this.txtUser.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
 

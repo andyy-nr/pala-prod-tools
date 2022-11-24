@@ -8,7 +8,6 @@
 public class Student {
 
     private int Id;
-    private int tabId;
     private int status;
     private String name;
     private String lastNames;
@@ -20,10 +19,9 @@ public class Student {
 
     }
 
-    public Student(int Id, int tabId, int status, String name, String lastNames, 
+    public Student(int Id, int status, String name, String lastNames, 
             String email, String userName, String password) {
         this.Id = Id;
-        this.tabId = tabId;
         this.status = status;
         this.name = name;
         this.lastNames = lastNames;
@@ -49,14 +47,6 @@ public class Student {
 
     public void setId(int Id) {
         this.Id = Id;
-    }
-
-    public int getTabId() {
-        return tabId;
-    }
-
-    public void setTabId(int tabId) {
-        this.tabId = tabId;
     }
 
     public int getStatus() {

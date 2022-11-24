@@ -4,6 +4,8 @@
  */
 package presentations;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Maria del Carmen
@@ -44,6 +46,11 @@ public class FormLogin extends javax.swing.JFrame {
 
         buttonLogin.setText("Log in");
         buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         buttonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Retroceder.png"))); // NOI18N
         buttonBack.setBorder(null);
@@ -112,6 +119,12 @@ public class FormLogin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        if (allCompleted()) {
+
+        }
+    }//GEN-LAST:event_buttonLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -157,4 +170,16 @@ public class FormLogin extends javax.swing.JFrame {
     private javax.swing.JLabel labelUsername;
     private javax.swing.JPasswordField pwfieldPassword;
     // End of variables declaration//GEN-END:variables
+
+    private boolean allCompleted() {
+        if (this.fieldUsername.getText().equals("") 
+            || String.valueOf(this.pwfieldPassword.getPassword()).equals("")) {
+                JOptionPane.showMessageDialog(this, "Debe completar todos los campos");
+            return false;
+        } else {
+            return true;
+
+        }
+
+    }
 }
