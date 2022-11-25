@@ -169,7 +169,7 @@ public class FormSignIn extends javax.swing.JFrame {
 
                 studentD.addStudent(student);
                 studentD.saveStudent(student);
-                courseD.saveCourse(); 
+                // courseD.saveCourse(); 
                 
             }
         }catch(HeadlessException ex){

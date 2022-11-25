@@ -23,16 +23,7 @@ public class CourseDao {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    ArrayList<String> courseNames = new ArrayList<>();
 
-    public void fillcourseNames() {
-        courseNames.add("asignatura 1");
-        courseNames.add("asignatura 2");
-        courseNames.add("asignatura 3");
-        courseNames.add("asignatura 4");
-        courseNames.add("asignatura 5");
-        courseNames.add("asignatura 6");
-    }
 
     public void getRegisters() {
         try {
@@ -53,6 +44,7 @@ public class CourseDao {
         try {
             while (rs.next()) {
                 Course course = new Course(rs.getString("Nombre"));
+                result.add(course);
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -61,18 +53,15 @@ public class CourseDao {
         return result;
     }
 
-    public boolean saveCourse() {
+    public boolean saveCourse(String cName) {
         boolean guardado = false;
         this.getRegisters();
         try {
             Statement st = conn.createStatement();
-            for (String cName : courseNames){
                 rs.moveToInsertRow();
                 rs.updateString("Nombre", cName);
                 rs.insertRow();
-                rs.moveToCurrentRow();
-            }
-            
+                rs.moveToCurrentRow();   
             guardado = true;
 
         } catch (SQLException ex) {

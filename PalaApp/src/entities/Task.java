@@ -9,20 +9,27 @@ import java.util.Date;
  */
 public class Task {
 
+    private int studentId;
     private String description;
     private StatusTask status;
     private int timeLeft;
-    private Date vencimiento;
+    private String dueDate;
 
     public Task() {
 
     }
 
-    public Task(String description, StatusTask status, Date vencimiento, int timeLeft) {
+    public Task(int id, String description, StatusTask status) {
+        this.studentId = id;
+        this.status = status;
+        this.description = description;
+        
+    }
+
+    public Task(String description, StatusTask status, String dueDate) {
         this.description = description;
         this.status = status;
-        this.vencimiento = vencimiento;
-        this.timeLeft = timeLeft;
+        this.dueDate = dueDate;
     }
 
     public void edit() {
@@ -36,8 +43,8 @@ public class Task {
     public void move() {
 
     }
-    
-    public void daysLeft(){
+
+    public void daysLeft() {
         
     }
 
@@ -65,12 +72,20 @@ public class Task {
         this.timeLeft = timeLeft;
     }
 
-    public Date getVencimiento() {
-        return vencimiento;
+    public String getDueDate() {
+        return dueDate;
     }
 
-    public void setVencimiento(Date vencimiento) {
-        this.vencimiento = vencimiento;
+    public void setDueDate(String dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
     }
 
 }//end Task

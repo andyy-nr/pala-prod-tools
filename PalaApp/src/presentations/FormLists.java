@@ -4,6 +4,10 @@
  */
 package presentations;
 
+import data.CourseDao;
+import data.TaskDao;
+import entities.Course;
+import entities.Task;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,16 +21,17 @@ public class FormLists extends javax.swing.JFrame {
     private DefaultTableModel dtbInProgress;
     private DefaultTableModel dtbCompleted;
     private int userID = 0;
-    private ArrayList<String> columnNames = new ArrayList<>();
+    TaskDao taskD = new TaskDao();
+    CourseDao courseD = new CourseDao();
+    ArrayList<String> courseNames = new ArrayList<>();
 
     public FormLists(int id) {
         initComponents();
         userID = id;
-        columnNames.add("Description");
-        columnNames.add("Course");
-        columnNames.add("Due Date");
-        columnNames.add("Time Left");
-        columnNames.add("To next list");
+        this.fillTable();
+        this.fillCbCourses();
+        this.fillCbStatus();
+
     }
 
     public FormLists() {
@@ -45,6 +50,13 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd1 = new javax.swing.JButton();
         buttonEdit1 = new javax.swing.JButton();
         buttonDelete1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jpanelProgress = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableInProgress = new javax.swing.JTable();
@@ -87,6 +99,11 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd1.setFocusable(false);
         buttonAdd1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonAdd1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdd1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(buttonAdd1);
 
         buttonEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
@@ -103,6 +120,24 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(buttonDelete1);
 
+        jButton1.setText("jButton1");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
+
+        jLabel1.setText("Task:");
+
+        jLabel2.setText("Course");
+
+        jLabel3.setText("Status");
+
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpanelNotStartedLayout = new javax.swing.GroupLayout(jpanelNotStarted);
         jpanelNotStarted.setLayout(jpanelNotStartedLayout);
         jpanelNotStartedLayout.setHorizontalGroup(
@@ -111,16 +146,43 @@ public class FormLists extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
-                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpanelNotStartedLayout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpanelNotStartedLayout.createSequentialGroup()
+                        .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1)
+                            .addGroup(jpanelNotStartedLayout.createSequentialGroup()
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jpanelNotStartedLayout.setVerticalGroup(
             jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelNotStartedLayout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Not Started", jpanelNotStarted);
@@ -267,6 +329,14 @@ public class FormLists extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonAdd3ActionPerformed
 
+    private void buttonAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd1ActionPerformed
+
+    }//GEN-LAST:event_buttonAdd1ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -313,11 +383,18 @@ public class FormLists extends javax.swing.JFrame {
     private javax.swing.JButton buttonEdit1;
     private javax.swing.JButton buttonEdit2;
     private javax.swing.JButton buttonEdit3;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanelCompleted;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
@@ -327,4 +404,77 @@ public class FormLists extends javax.swing.JFrame {
     private javax.swing.JTable tableInProgress;
     private javax.swing.JTable tableNotStarted;
     // End of variables declaration//GEN-END:variables
+
+    private void fillTable() {
+        String columnNames[] = {"Description", "Course", "Due Date", "Time left"};
+        DefaultTableModel dtmNotStarted = new DefaultTableModel();
+        dtmNotStarted.setColumnIdentifiers(columnNames);
+        this.tableNotStarted.setModel(dtmNotStarted);
+        
+        DefaultTableModel dtmInProgress = new DefaultTableModel();
+        dtmNotStarted.setColumnIdentifiers(columnNames);
+        this.tableInProgress.setModel(dtmInProgress);
+        
+        DefaultTableModel dtmCompleted = new DefaultTableModel();
+        dtmNotStarted.setColumnIdentifiers(columnNames);
+        this.tableCompleted.setModel(dtmCompleted);
+        
+
+        ArrayList<Task> studentTasks = taskD.getDatafromID(this.userID);
+
+        for (Task task : studentTasks) {
+            switch (task.getStatus()) {
+                case NotStarted:
+                    Object[] row1 = new Object[]{
+                        task.getDescription(),
+                        task.getClass(),
+                        task.getDueDate(),
+                        task.getTimeLeft()
+                    };
+                    dtmNotStarted.addRow(row1);
+                case InProgress:
+                    Object[] row2 = new Object[]{
+                        task.getDescription(),
+                        task.getClass(),
+                        task.getDueDate(),
+                        task.getTimeLeft()
+                    };
+                    dtmInProgress.addRow(row2);
+                case Completed:
+                    Object[] row3 = new Object[]{
+                        task.getDescription(),
+                        task.getClass(),
+                        task.getDueDate(),
+                        task.getTimeLeft()
+                    };
+                    dtmInProgress.addRow(row3);
+            }
+        }
+
+    }
+
+    private void fillCbCourses() {
+        // this.fillcourseNames();
+        ArrayList<Course> courses = courseD.getData();
+        for (Course course : courses) {
+            jComboBox2.addItem(course.getName());
+        }
+    }
+
+    private void fillCbStatus() {
+        jComboBox1.addItem("NotCompleted");
+        jComboBox1.addItem("InProgress");
+    }
+   
+    public void fillcourseNames() {
+        courseNames.add("asignatura 1");
+        courseNames.add("asignatura 2");
+        courseNames.add("asignatura 3");
+        courseNames.add("asignatura 4");
+        courseNames.add("asignatura 5");
+        courseNames.add("asignatura 6");
+        for (String cName : courseNames) {
+            courseD.saveCourse(cName);
+        }
+    }
 }
