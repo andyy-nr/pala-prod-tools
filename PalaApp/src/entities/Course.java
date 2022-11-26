@@ -48,11 +48,11 @@ public class Course {
     }
 
     public int getID() {
-        return ID;
+        return CourseID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setID(int CourseID) {
+        this.CourseID = CourseID;
     }
 
 }//end Course

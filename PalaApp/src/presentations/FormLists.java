@@ -596,7 +596,8 @@ public class FormLists extends javax.swing.JFrame {
             }
 
         } catch (HeadlessException ex) {
-
+            JOptionPane.showMessageDialog(this, "There was an error",
+                    "task", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_buttonAdd1ActionPerformed
 
@@ -726,8 +727,16 @@ public class FormLists extends javax.swing.JFrame {
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableCompleted.setModel(dtmCompleted);
 
-       // ArrayList<Task> tasks = ctD.getDatafromCourseID(id);
-        ArrayList<Task> studentTasks = taskD.getDatafromStdID(this.userID);
+        ArrayList<Course> courses = courseD.getData();
+        ArrayList<Task> studentTasks = new ArrayList<>();
+        ArrayList<Task> tasksfromCourse = new ArrayList<>();
+        for (Course c : courses) {
+            tasksfromCourse = ctD.getTasksfromCourseID(c.getID(), userID);
+            for (Task t : tasksfromCourse){
+                studentTasks.add(t);
+            }
+        }
+        
 
         for (Task task : studentTasks) {
             switch (task.getStatus()) {
@@ -784,13 +793,17 @@ public class FormLists extends javax.swing.JFrame {
         if (courseID != 0 && taskID != 0) {
             CourseTask ct = new CourseTask(courseID, taskID);
             ctD.saveCT(ct);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(
-                    null, 
+                    null,
                     "A mistake happened, try again later",
                     "Oh no...",
                     JOptionPane.ERROR_MESSAGE);
         }
 
     }
+/*
+    private void getTasksfromCourse(int cID) {
+        ctD.getTasksfromCourseID(ERROR, WIDTH)
+    }*/
 }

@@ -21,10 +21,11 @@ import java.util.logging.Logger;
  * @author Andrea Nunez
  */
 public class CourseTaskDao {
+
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-
+    TaskDao td = new TaskDao();
 
     public void getRegisters() {
         try {
@@ -39,22 +40,32 @@ public class CourseTaskDao {
         }
     }
 
-    public ArrayList<Task> getDatafromCourseID(int idCourse) {
+    public ArrayList<Task> getTasksfromCourseID(int idCourse, int idStd) {
         this.getRegisters();
-        ArrayList<Task> result = new ArrayList<>();
+        ArrayList<Task> tasksInCourse = new ArrayList<>();
+        ArrayList<CourseTask> tasksfromCourse = new ArrayList<>();
+        ArrayList<Task> tasks = td.getDatafromStdID(idStd);
+
+        for (Task task : tasks) {
+            CourseTask ct = new CourseTask(idCourse, task.getTaskId());
+            tasksfromCourse.add(ct);
+        }
         try {
             while (rs.next()) {
-                Task task = new Task(rs.getInt("EstudianteID"),
-                        rs.getString("Nombre"),
-                        StatusTask.valueOf(rs.getString("Estado"))
-                );
-                result.add(task);
+                for (CourseTask ct : tasksfromCourse) {
+                    if (rs.getInt("TareaID") == ct.getTaskID() && rs.getInt("AsignaturaID") == ct.getCourseID()) {
+                        tasksInCourse.add(td.getTaskfromID(ct.getTaskID()));
+                        System.out.print(tasksInCourse);
+                    }
+                }
+
             }
+
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
 
         }
-        return result;
+        return tasksInCourse;
     }
 
     public boolean saveCT(CourseTask ct) {
@@ -62,11 +73,11 @@ public class CourseTaskDao {
         this.getRegisters();
         try {
             Statement st = conn.createStatement();
-                rs.moveToInsertRow();
-                rs.updateInt("AsignaturaID", ct.getCourseID());
-                rs.updateInt("TareaID", ct.getTaskID());
-                rs.insertRow();
-                rs.moveToCurrentRow();   
+            rs.moveToInsertRow();
+            rs.updateInt("AsignaturaID", ct.getCourseID());
+            rs.updateInt("TareaID", ct.getTaskID());
+            rs.insertRow();
+            rs.moveToCurrentRow();
             guardado = true;
 
         } catch (SQLException ex) {

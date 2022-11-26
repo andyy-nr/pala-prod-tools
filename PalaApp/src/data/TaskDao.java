@@ -107,6 +107,27 @@ public class TaskDao {
         return 0;
     }
 
+    public Task getTaskfromID(int id) {
+        this.getRegisters();
+        try {
+            while (rs.next()) {
+                Task task = new Task(
+                        rs.getInt("TareaID"),
+                        rs.getString("Descripcion"),
+                        StatusTask.valueOf(rs.getString("Estado"))
+                        );
+
+                if (task.getTaskId() == id) {
+                    return task;
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return null;
+    }
+
     public boolean saveTask(Task t) {
         boolean guardado = false;
         this.getRegisters();
