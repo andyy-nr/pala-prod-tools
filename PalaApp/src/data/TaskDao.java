@@ -97,6 +97,7 @@ public class TaskDao {
                         rs.getString("Descripcion"),
                         rs.getInt("TareaID"));
                 if (task.getDescription().equals(desc)) {
+                    System.out.println(task.getTaskId());
                     return task.getTaskId();
                 }
             }
@@ -107,12 +108,13 @@ public class TaskDao {
         return 0;
     }
 
-    public Task getTaskfromID(int id) {
+    public Task getTaskfromID(int id, int stdId) {
         this.getRegisters();
         try {
             while (rs.next()) {
                 Task task = new Task(
                         rs.getInt("TareaID"),
+                        stdId,
                         rs.getString("Descripcion"),
                         StatusTask.valueOf(rs.getString("Estado"))
                         );

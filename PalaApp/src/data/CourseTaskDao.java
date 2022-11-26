@@ -43,22 +43,16 @@ public class CourseTaskDao {
     public ArrayList<Task> getTasksfromCourseID(int idCourse, int idStd) {
         this.getRegisters();
         ArrayList<Task> tasksInCourse = new ArrayList<>();
-        ArrayList<CourseTask> tasksfromCourse = new ArrayList<>();
-        ArrayList<Task> tasks = td.getDatafromStdID(idStd);
+        
+        int taskID = 0;
 
-        for (Task task : tasks) {
-            CourseTask ct = new CourseTask(idCourse, task.getTaskId());
-            tasksfromCourse.add(ct);
-        }
         try {
             while (rs.next()) {
-                for (CourseTask ct : tasksfromCourse) {
-                    if (rs.getInt("TareaID") == ct.getTaskID() && rs.getInt("AsignaturaID") == ct.getCourseID()) {
-                        tasksInCourse.add(td.getTaskfromID(ct.getTaskID()));
-                        System.out.print(tasksInCourse);
-                    }
+                if (rs.getInt("AsignaturaID") == idCourse) {
+                    taskID = rs.getInt("TareaID");
+                    Task oneTask = td.getTaskfromID(taskID, idStd);
+                    tasksInCourse.add(oneTask);
                 }
-
             }
 
         } catch (SQLException ex) {
@@ -74,8 +68,8 @@ public class CourseTaskDao {
         try {
             Statement st = conn.createStatement();
             rs.moveToInsertRow();
-            rs.updateInt("AsignaturaID", ct.getCourseID());
             rs.updateInt("TareaID", ct.getTaskID());
+            rs.updateInt("AsignaturaID", ct.getCourseID());
             rs.insertRow();
             rs.moveToCurrentRow();
             guardado = true;

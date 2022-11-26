@@ -585,10 +585,11 @@ public class FormLists extends javax.swing.JFrame {
                 if (taskD.saveTask(a)) {
                     JOptionPane.showMessageDialog(this, "Task saved",
                             "task", JOptionPane.INFORMATION_MESSAGE);
-                    fillTable();
+                    
                     this.fieldTask1.setText("");
                     this.fieldTask1.requestFocus();
                     savetoCourseTask(a, course);
+                    fillTable();
                 } else {
                     JOptionPane.showMessageDialog(this, "There was an error",
                             "task", JOptionPane.WARNING_MESSAGE);
@@ -610,11 +611,44 @@ public class FormLists extends javax.swing.JFrame {
     }//GEN-LAST:event_cbCourse2ActionPerformed
 
     private void buttonAdd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonAdd4ActionPerformed
+        String taskDesc = fieldTask2.getText();
+        StatusTask status = StatusTask.valueOf(cbStatus1.getSelectedItem().toString());
+        String course = cbCourse2.getSelectedItem().toString();
+
+        try {
+            if (taskDesc.equals("")) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Please write a task",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                this.fieldTask1.requestFocus();
+            } else {
+
+                Task a = new Task(
+                        this.userID,
+                        taskDesc,
+                        status
+                );
+                if (taskD.saveTask(a)) {
+                    JOptionPane.showMessageDialog(this, "Task saved",
+                            "task", JOptionPane.INFORMATION_MESSAGE);
+                    fillTable();
+                    this.fieldTask1.setText("");
+                    this.fieldTask1.requestFocus();
+                    savetoCourseTask(a, course);
+                } else {
+                    JOptionPane.showMessageDialog(this, "There was an error",
+                            "task", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        } catch (HeadlessException ex) {
+            JOptionPane.showMessageDialog(this, "There was an error",
+                    "task", JOptionPane.WARNING_MESSAGE);
+        }    }//GEN-LAST:event_buttonAdd4ActionPerformed
 
     private void buttonAdd5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd5ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_buttonAdd5ActionPerformed
 
     private void cbCourse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCourse3ActionPerformed
@@ -727,37 +761,32 @@ public class FormLists extends javax.swing.JFrame {
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableCompleted.setModel(dtmCompleted);
 
-        ArrayList<Course> courses = courseD.getData();
-        ArrayList<Task> studentTasks = new ArrayList<>();
+        ArrayList<Course> courses = courseD.getDatawithID();
         ArrayList<Task> tasksfromCourse = new ArrayList<>();
+
         for (Course c : courses) {
             tasksfromCourse = ctD.getTasksfromCourseID(c.getID(), userID);
-            for (Task t : tasksfromCourse){
-                studentTasks.add(t);
-            }
-        }
-        
-
-        for (Task task : studentTasks) {
-            switch (task.getStatus()) {
-                case NotStarted:
-                    Object[] row1 = new Object[]{
-                        task.getDescription(),
-                        task.getClass()
-                    };
-                    dtmNotStarted.addRow(row1);
-                case InProgress:
-                    Object[] row2 = new Object[]{
-                        task.getDescription(),
-                        task.getClass()
-                    };
-                    dtmInProgress.addRow(row2);
-                case Completed:
-                    Object[] row3 = new Object[]{
-                        task.getDescription(),
-                        task.getClass()
-                    };
-                    dtmInProgress.addRow(row3);
+            for (Task task : tasksfromCourse) {
+                switch (task.getStatus()) {
+                    case NotStarted:
+                        Object[] row1 = new Object[]{
+                            task.getDescription(),
+                            c.getName()
+                        };
+                        dtmNotStarted.addRow(row1);
+                    case InProgress:
+                        Object[] row2 = new Object[]{
+                            task.getDescription(),
+                            c.getName()
+                        };
+                        dtmInProgress.addRow(row2);
+                    case Completed:
+                        Object[] row3 = new Object[]{
+                            task.getDescription(),
+                            c.getName()
+                        };
+                        dtmInProgress.addRow(row3);
+                }
             }
         }
 
@@ -800,10 +829,5 @@ public class FormLists extends javax.swing.JFrame {
                     "Oh no...",
                     JOptionPane.ERROR_MESSAGE);
         }
-
     }
-/*
-    private void getTasksfromCourse(int cID) {
-        ctD.getTasksfromCourseID(ERROR, WIDTH)
-    }*/
 }

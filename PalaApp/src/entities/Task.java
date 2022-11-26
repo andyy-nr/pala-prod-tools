@@ -23,12 +23,21 @@ public class Task {
         this.taskId = taskId;
     }
 
+    public Task(int taskId, int studentId, String description, StatusTask status) {
+        this.taskId = taskId;
+        this.studentId = studentId;
+        this.description = description;
+        this.status = status;
+    }
+    
+
     public Task(int id, String description, StatusTask status) {
         this.studentId = id;
         this.status = status;
         this.description = description;
 
     }
+    
 
     public Task(String description, StatusTask status) {
         this.description = description;

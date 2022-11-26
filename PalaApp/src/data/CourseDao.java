@@ -52,6 +52,24 @@ public class CourseDao {
         return result;
     }
 
+    public ArrayList<Course> getDatawithID() {
+        this.getRegisters();
+        ArrayList<Course> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Course course = new Course(
+                        rs.getString("Nombre"),
+                        rs.getInt("AsignaturaID")
+                );
+                result.add(course);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return result;
+    }
+
     public int getCourseID(String name) {
         this.getRegisters();
         try {
@@ -102,21 +120,22 @@ public class CourseDao {
         }
         return guardado;
     }
-    public boolean deleteCourse(String name){
+
+    public boolean deleteCourse(String name) {
         boolean resp = false;
         this.getRegisters();
         try {
             rs.beforeFirst();
-            while(rs.next()){
-                if(rs.getString("Nombre").equals(name)){
+            while (rs.next()) {
+                if (rs.getString("Nombre").equals(name)) {
                     rs.deleteRow();
                     resp = true;
                     break;
                 }
             }
         } catch (SQLException ex) {
-            System.out.println("Error al eliminar curso"+ ex.getMessage());
-        }finally {
+            System.out.println("Error al eliminar curso" + ex.getMessage());
+        } finally {
             try {
                 if (rs != null) {
                     rs.close();
@@ -127,10 +146,10 @@ public class CourseDao {
                 if (conn != null) {
                     Conexion.closeConexion(conn);
                 }
-            } catch (SQLException ex) {            
+            } catch (SQLException ex) {
                 System.out.println(ex.getMessage());
             }
-        }   
+        }
         return resp;
     }
 }
