@@ -24,10 +24,9 @@ public class Task {
 
     }
 
-    public Task(String description, StatusTask status, String dueDate) {
+    public Task(String description, StatusTask status) {
         this.description = description;
         this.status = status;
-        this.dueDate = dueDate;
     }
 
     public void edit() {
@@ -58,22 +57,6 @@ public class Task {
 
     public void setStatus(StatusTask status) {
         this.status = status;
-    }
-
-    public int getTimeLeft() {
-        return timeLeft;
-    }
-
-    public void setTimeLeft(int timeLeft) {
-        this.timeLeft = timeLeft;
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
     }
 
     public int getStudentId() {

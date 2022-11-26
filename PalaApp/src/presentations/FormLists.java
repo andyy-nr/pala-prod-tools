@@ -27,6 +27,7 @@ public class FormLists extends javax.swing.JFrame {
     TaskDao taskD = new TaskDao();
     CourseDao courseD = new CourseDao();
     ArrayList<String> courseNames = new ArrayList<>();
+    
 
     public FormLists(int id) {
         initComponents();
@@ -34,6 +35,7 @@ public class FormLists extends javax.swing.JFrame {
         this.fillTable();
         this.fillCbCourses();
         this.fillCbStatus();
+        this.fieldTask1.requestFocus();
 
     }
 
@@ -599,11 +601,13 @@ public class FormLists extends javax.swing.JFrame {
                 );
                 if (taskD.saveTask(a)) {
                     JOptionPane.showMessageDialog(this, "Task saved",
-                            "Autor", JOptionPane.INFORMATION_MESSAGE);
+                            "task", JOptionPane.INFORMATION_MESSAGE);
                     fillTable();
+                    this.fieldTask1.setText("");
+                    this.fieldTask1.requestFocus();
                 } else {
-                    JOptionPane.showMessageDialog(this, "There was an error",
-                            "Autor", JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "There was an error", 
+                            "task", JOptionPane.WARNING_MESSAGE);
                 }
             }
 
@@ -726,7 +730,7 @@ public class FormLists extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fillTable() {
-        String columnNames[] = {"Description", "Course", "Due Date", "Time left"};
+        String columnNames[] = {"Description", "Course"};
         DefaultTableModel dtmNotStarted = new DefaultTableModel();
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableNotStarted.setModel(dtmNotStarted);
@@ -746,25 +750,19 @@ public class FormLists extends javax.swing.JFrame {
                 case NotStarted:
                     Object[] row1 = new Object[]{
                         task.getDescription(),
-                        task.getClass(),
-                        task.getDueDate(),
-                        task.getTimeLeft()
+                        task.getClass()
                     };
                     dtmNotStarted.addRow(row1);
                 case InProgress:
                     Object[] row2 = new Object[]{
                         task.getDescription(),
-                        task.getClass(),
-                        task.getDueDate(),
-                        task.getTimeLeft()
+                        task.getClass()
                     };
                     dtmInProgress.addRow(row2);
                 case Completed:
                     Object[] row3 = new Object[]{
                         task.getDescription(),
-                        task.getClass(),
-                        task.getDueDate(),
-                        task.getTimeLeft()
+                        task.getClass()
                     };
                     dtmInProgress.addRow(row3);
             }
@@ -773,7 +771,8 @@ public class FormLists extends javax.swing.JFrame {
     }
 
     private void fillCbCourses() {
-        // this.fillcourseNames();
+        
+        this.fillcourseNames();
         ArrayList<Course> courses = courseD.getData();
         for (Course course : courses) {
             cbCourse1.addItem(course.getName());
@@ -784,11 +783,11 @@ public class FormLists extends javax.swing.JFrame {
     }
 
     private void fillCbStatus() {
-        cbStatus1.addItem("NotCompleted");
+        cbStatus1.addItem("NotStarted");
         cbStatus1.addItem("InProgress");
-        cbStatus2.addItem("NotCompleted");
+        cbStatus2.addItem("NotStarted");
         cbStatus2.addItem("InProgress");
-        cbStatus3.addItem("NotCompleted");
+        cbStatus3.addItem("NotStarted");
         cbStatus3.addItem("InProgress");
     }
 

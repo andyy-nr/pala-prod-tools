@@ -63,7 +63,7 @@ public class CourseTaskDao {
         try {
             Statement st = conn.createStatement();
                 rs.moveToInsertRow();
-                rs.updateString("Nombre", cName);
+                rs.updateString("Nombre", c.getName());
                 rs.insertRow();
                 rs.moveToCurrentRow();   
             guardado = true;

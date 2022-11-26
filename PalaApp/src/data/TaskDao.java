@@ -75,7 +75,7 @@ public class TaskDao {
             while (rs.next()) {
                 Task task = new Task(
                         rs.getInt("EstudianteID"),
-                        rs.getString("Nombre"),
+                        rs.getString("Descripcion"),
                         StatusTask.valueOf(rs.getString("Estado"))
                 );
                 if (task.getStudentId() == id) {
@@ -98,14 +98,14 @@ public class TaskDao {
             rs.moveToInsertRow();
             rs.updateInt("EstudianteID", t.getStudentId());
             rs.updateString("Estado", String.valueOf(t.getStatus()));
-            rs.updateString("Nombre", t.getDescription());
+            rs.updateString("Descripcion", t.getDescription());
             rs.insertRow();
             rs.moveToCurrentRow();
 
             guardado = true;
 
         } catch (SQLException ex) {
-            System.out.println("Error trying to save course " + ex.getMessage());
+            System.out.println("Error trying to save task " + ex.getMessage());
         } finally {
             try {
                 if (rs != null) {

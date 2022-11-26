@@ -19,6 +19,7 @@ public class FormLogin extends javax.swing.JFrame {
     StudentDao stdDao = new StudentDao();
     public FormLogin() {
         initComponents();
+        this.fieldUsername.requestFocus();
     }
 
     /**
