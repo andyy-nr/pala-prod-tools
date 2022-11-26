@@ -24,7 +24,6 @@ public class CourseDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
 
-
     public void getRegisters() {
         try {
             conn = Conexion.getConnection();
@@ -53,15 +52,33 @@ public class CourseDao {
         return result;
     }
 
+    public int getCourseID(String name) {
+        this.getRegisters();
+        try {
+            while (rs.next()) {
+                Course course = new Course(
+                        rs.getString("Nombre"),
+                        rs.getInt("AsignaturaID"));
+                if (course.getName().equals(name)) {
+                    return course.getID();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return 0;
+    }
+
     public boolean saveCourse(String cName) {
         boolean guardado = false;
         this.getRegisters();
         try {
             Statement st = conn.createStatement();
-                rs.moveToInsertRow();
-                rs.updateString("Nombre", cName);
-                rs.insertRow();
-                rs.moveToCurrentRow();   
+            rs.moveToInsertRow();
+            rs.updateString("Nombre", cName);
+            rs.insertRow();
+            rs.moveToCurrentRow();
             guardado = true;
 
         } catch (SQLException ex) {
@@ -84,5 +101,36 @@ public class CourseDao {
             }
         }
         return guardado;
+    }
+    public boolean deleteCourse(String name){
+        boolean resp = false;
+        this.getRegisters();
+        try {
+            rs.beforeFirst();
+            while(rs.next()){
+                if(rs.getString("Nombre").equals(name)){
+                    rs.deleteRow();
+                    resp = true;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al eliminar curso"+ ex.getMessage());
+        }finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    Conexion.closeConexion(conn);
+                }
+            } catch (SQLException ex) {            
+                System.out.println(ex.getMessage());
+            }
+        }   
+        return resp;
     }
 }

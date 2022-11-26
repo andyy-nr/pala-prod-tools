@@ -4,7 +4,7 @@
  */
 package data;
 
-import entities.Course;
+import entities.CourseTask;
 import entities.StatusTask;
 import entities.Task;
 import java.sql.Connection;
@@ -39,7 +39,7 @@ public class CourseTaskDao {
         }
     }
 
-    public ArrayList<Task> getDatafromCourseID(int idCourse, ArrayList<Task> tasks) {
+    public ArrayList<Task> getDatafromCourseID(int idCourse) {
         this.getRegisters();
         ArrayList<Task> result = new ArrayList<>();
         try {
@@ -57,13 +57,14 @@ public class CourseTaskDao {
         return result;
     }
 
-    public boolean saveCourse(Course c, Task t) {
+    public boolean saveCT(CourseTask ct) {
         boolean guardado = false;
         this.getRegisters();
         try {
             Statement st = conn.createStatement();
                 rs.moveToInsertRow();
-                rs.updateString("Nombre", c.getName());
+                rs.updateInt("AsignaturaID", ct.getCourseID());
+                rs.updateInt("TareaID", ct.getTaskID());
                 rs.insertRow();
                 rs.moveToCurrentRow();   
             guardado = true;

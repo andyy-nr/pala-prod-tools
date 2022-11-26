@@ -5,8 +5,10 @@
 package presentations;
 
 import data.CourseDao;
+import data.CourseTaskDao;
 import data.TaskDao;
 import entities.Course;
+import entities.CourseTask;
 import entities.StatusTask;
 import entities.Task;
 import java.awt.HeadlessException;
@@ -26,8 +28,8 @@ public class FormLists extends javax.swing.JFrame {
     private int userID = 0;
     TaskDao taskD = new TaskDao();
     CourseDao courseD = new CourseDao();
+    CourseTaskDao ctD = new CourseTaskDao();
     ArrayList<String> courseNames = new ArrayList<>();
-    
 
     public FormLists(int id) {
         initComponents();
@@ -85,7 +87,6 @@ public class FormLists extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tableCompleted = new javax.swing.JTable();
         jToolBar3 = new javax.swing.JToolBar();
-        buttonAdd3 = new javax.swing.JButton();
         buttonEdit3 = new javax.swing.JButton();
         buttonDelete3 = new javax.swing.JButton();
         jpanelNotStarted2 = new javax.swing.JPanel();
@@ -400,20 +401,7 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar3.setBackground(new java.awt.Color(239, 237, 231));
         jToolBar3.setRollover(true);
 
-        buttonAdd3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
-        buttonAdd3.setFocusable(false);
-        buttonAdd3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        buttonAdd3.setIconTextGap(0);
-        buttonAdd3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        buttonAdd3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonAdd3ActionPerformed(evt);
-            }
-        });
-        jToolBar3.add(buttonAdd3);
-
         buttonEdit3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
-        buttonEdit3.setFocusable(false);
         buttonEdit3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonEdit3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar3.add(buttonEdit3);
@@ -444,7 +432,6 @@ public class FormLists extends javax.swing.JFrame {
 
         buttonAdd5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
         buttonAdd5.setBorder(null);
-        buttonAdd5.setFocusable(false);
         buttonAdd5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonAdd5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         buttonAdd5.addActionListener(new java.awt.event.ActionListener() {
@@ -575,15 +562,11 @@ public class FormLists extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonAdd3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonAdd3ActionPerformed
-
     private void buttonAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd1ActionPerformed
         String taskDesc = fieldTask1.getText();
-        int indexStatus = cbStatus1.getSelectedIndex();
-        String status = cbStatus1.getItemAt(indexStatus);
-        
+        StatusTask status = StatusTask.valueOf(cbStatus1.getSelectedItem().toString());
+        String course = cbCourse1.getSelectedItem().toString();
+
         try {
             if (taskDesc.equals("")) {
                 JOptionPane.showMessageDialog(
@@ -596,8 +579,8 @@ public class FormLists extends javax.swing.JFrame {
 
                 Task a = new Task(
                         this.userID,
-                        fieldTask1.getText(),
-                        StatusTask.valueOf(status)
+                        taskDesc,
+                        status
                 );
                 if (taskD.saveTask(a)) {
                     JOptionPane.showMessageDialog(this, "Task saved",
@@ -605,8 +588,9 @@ public class FormLists extends javax.swing.JFrame {
                     fillTable();
                     this.fieldTask1.setText("");
                     this.fieldTask1.requestFocus();
+                    savetoCourseTask(a, course);
                 } else {
-                    JOptionPane.showMessageDialog(this, "There was an error", 
+                    JOptionPane.showMessageDialog(this, "There was an error",
                             "task", JOptionPane.WARNING_MESSAGE);
                 }
             }
@@ -620,13 +604,13 @@ public class FormLists extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCourse1ActionPerformed
 
-    private void buttonAdd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_buttonAdd4ActionPerformed
-
     private void cbCourse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCourse2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCourse2ActionPerformed
+
+    private void buttonAdd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAdd4ActionPerformed
 
     private void buttonAdd5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd5ActionPerformed
         // TODO add your handling code here:
@@ -675,7 +659,6 @@ public class FormLists extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAdd1;
     private javax.swing.JButton buttonAdd2;
-    private javax.swing.JButton buttonAdd3;
     private javax.swing.JButton buttonAdd4;
     private javax.swing.JButton buttonAdd5;
     private javax.swing.JButton buttonDelete1;
@@ -743,7 +726,8 @@ public class FormLists extends javax.swing.JFrame {
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableCompleted.setModel(dtmCompleted);
 
-        ArrayList<Task> studentTasks = taskD.getDatafromID(this.userID);
+       // ArrayList<Task> tasks = ctD.getDatafromCourseID(id);
+        ArrayList<Task> studentTasks = taskD.getDatafromStdID(this.userID);
 
         for (Task task : studentTasks) {
             switch (task.getStatus()) {
@@ -771,8 +755,8 @@ public class FormLists extends javax.swing.JFrame {
     }
 
     private void fillCbCourses() {
-        
-        this.fillcourseNames();
+
+        // this.fillcourseNames();
         ArrayList<Course> courses = courseD.getData();
         for (Course course : courses) {
             cbCourse1.addItem(course.getName());
@@ -785,21 +769,28 @@ public class FormLists extends javax.swing.JFrame {
     private void fillCbStatus() {
         cbStatus1.addItem("NotStarted");
         cbStatus1.addItem("InProgress");
+        cbStatus1.addItem("Completed");
         cbStatus2.addItem("NotStarted");
         cbStatus2.addItem("InProgress");
+        cbStatus2.addItem("Completed");
         cbStatus3.addItem("NotStarted");
         cbStatus3.addItem("InProgress");
+        cbStatus3.addItem("Completed");
     }
 
-    public void fillcourseNames() {
-        courseNames.add("asignatura 1");
-        courseNames.add("asignatura 2");
-        courseNames.add("asignatura 3");
-        courseNames.add("asignatura 4");
-        courseNames.add("asignatura 5");
-        courseNames.add("asignatura 6");
-        for (String cName : courseNames) {
-            courseD.saveCourse(cName);
+    private void savetoCourseTask(Task a, String c) {
+        int courseID = courseD.getCourseID(c);
+        int taskID = taskD.getTaskID(a.getDescription());
+        if (courseID != 0 && taskID != 0) {
+            CourseTask ct = new CourseTask(courseID, taskID);
+            ctD.saveCT(ct);
+        }else{
+            JOptionPane.showMessageDialog(
+                    null, 
+                    "A mistake happened, try again later",
+                    "Oh no...",
+                    JOptionPane.ERROR_MESSAGE);
         }
+
     }
 }

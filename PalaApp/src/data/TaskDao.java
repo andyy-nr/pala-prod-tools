@@ -68,7 +68,7 @@ public class TaskDao {
         return result;
     }
 
-    public ArrayList<Task> getDatafromID(int id) {
+    public ArrayList<Task> getDatafromStdID(int id) {
         this.getRegisters();
         ArrayList<Task> result = new ArrayList<>();
         try {
@@ -87,6 +87,24 @@ public class TaskDao {
 
         }
         return result;
+    }
+
+    public int getTaskID(String desc) {
+        this.getRegisters();
+        try {
+            while (rs.next()) {
+                Task task = new Task(
+                        rs.getString("Descripcion"),
+                        rs.getInt("TareaID"));
+                if (task.getDescription().equals(desc)) {
+                    return task.getTaskId();
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
+
+        }
+        return 0;
     }
 
     public boolean saveTask(Task t) {

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class Course {
 
     private String name;
+    private int CourseID;
     private ArrayList<Task> tasks;
 
     public Course() {
@@ -18,6 +19,16 @@ public class Course {
 
     public Course(String name) {
         this.name = name;
+    }
+
+    public Course(String name, int ID) {
+        this.name = name;
+        this.CourseID = ID;
+    }
+
+    public Course(String name, ArrayList<Task> tasks) {
+        this.name = name;
+        this.tasks = tasks;
     }
 
     public String getName() {
@@ -34,6 +45,14 @@ public class Course {
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
 }//end Course

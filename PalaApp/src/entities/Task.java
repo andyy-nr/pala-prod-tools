@@ -9,12 +9,18 @@ import java.util.Date;
  */
 public class Task {
 
+    private int taskId;
     private int studentId;
     private String description;
     private StatusTask status;
 
     public Task() {
 
+    }
+
+    public Task(String description, int taskId) {
+        this.description = description;
+        this.taskId = taskId;
     }
 
     public Task(int id, String description, StatusTask status) {
@@ -65,6 +71,14 @@ public class Task {
 
     public void setStudentId(int studentId) {
         this.studentId = studentId;
+    }
+
+    public int getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
 }//end Task
