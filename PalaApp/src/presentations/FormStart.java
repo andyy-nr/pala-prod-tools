@@ -31,7 +31,6 @@ public class FormStart extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         buttonLogin = new javax.swing.JButton();
         buttonSignin = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -57,13 +56,6 @@ public class FormStart extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("jButton2");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -72,19 +64,16 @@ public class FormStart extends javax.swing.JFrame {
                 .addGap(107, 107, 107)
                 .addComponent(buttonLogin)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(36, 36, 36)
                 .addComponent(buttonSignin)
                 .addGap(94, 94, 94))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonLogin)
-                    .addComponent(buttonSignin)
-                    .addComponent(jButton2))
+                    .addComponent(buttonSignin))
                 .addContainerGap())
         );
 
@@ -116,10 +105,6 @@ public class FormStart extends javax.swing.JFrame {
         new FormSignIn().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonSigninActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new FormLists().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,7 +146,6 @@ public class FormStart extends javax.swing.JFrame {
     private javax.swing.JButton buttonLogin;
     private javax.swing.JButton buttonSignin;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelLogo;
     // End of variables declaration//GEN-END:variables

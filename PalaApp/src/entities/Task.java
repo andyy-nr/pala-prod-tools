@@ -12,8 +12,6 @@ public class Task {
     private int studentId;
     private String description;
     private StatusTask status;
-    private int timeLeft;
-    private String dueDate;
 
     public Task() {
 
@@ -23,7 +21,7 @@ public class Task {
         this.studentId = id;
         this.status = status;
         this.description = description;
-        
+
     }
 
     public Task(String description, StatusTask status, String dueDate) {
@@ -44,9 +42,7 @@ public class Task {
 
     }
 
-    public void daysLeft() {
-        
-    }
+
 
     public String getDescription() {
         return description;

@@ -7,8 +7,11 @@ package presentations;
 import data.CourseDao;
 import data.TaskDao;
 import entities.Course;
+import entities.StatusTask;
 import entities.Task;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,13 +53,12 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd1 = new javax.swing.JButton();
         buttonEdit1 = new javax.swing.JButton();
         buttonDelete1 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        fieldTask1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cbStatus1 = new javax.swing.JComboBox<>();
+        cbCourse1 = new javax.swing.JComboBox<>();
         jpanelProgress = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableInProgress = new javax.swing.JTable();
@@ -64,6 +66,19 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd2 = new javax.swing.JButton();
         buttonEdit2 = new javax.swing.JButton();
         buttonDelete2 = new javax.swing.JButton();
+        jpanelNotStarted1 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tableNotStarted1 = new javax.swing.JTable();
+        jToolBar4 = new javax.swing.JToolBar();
+        buttonAdd4 = new javax.swing.JButton();
+        buttonEdit4 = new javax.swing.JButton();
+        buttonDelete4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        fieldTask2 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        cbStatus2 = new javax.swing.JComboBox<>();
+        cbCourse2 = new javax.swing.JComboBox<>();
         jPanelCompleted = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tableCompleted = new javax.swing.JTable();
@@ -71,6 +86,19 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd3 = new javax.swing.JButton();
         buttonEdit3 = new javax.swing.JButton();
         buttonDelete3 = new javax.swing.JButton();
+        jpanelNotStarted2 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tableNotStarted2 = new javax.swing.JTable();
+        jToolBar5 = new javax.swing.JToolBar();
+        buttonAdd5 = new javax.swing.JButton();
+        buttonEdit5 = new javax.swing.JButton();
+        buttonDelete5 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        fieldTask3 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cbStatus3 = new javax.swing.JComboBox<>();
+        cbCourse3 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,21 +148,15 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(buttonDelete1);
 
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
-
         jLabel1.setText("Task:");
 
         jLabel2.setText("Course");
 
         jLabel3.setText("Status");
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        cbCourse1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                cbCourse1ActionPerformed(evt);
             }
         });
 
@@ -150,7 +172,7 @@ public class FormLists extends javax.swing.JFrame {
                     .addGroup(jpanelNotStartedLayout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jpanelNotStartedLayout.createSequentialGroup()
                         .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,28 +180,28 @@ public class FormLists extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
+                            .addComponent(fieldTask1)
                             .addGroup(jpanelNotStartedLayout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jpanelNotStartedLayout.setVerticalGroup(
             jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelNotStartedLayout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldTask1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbCourse1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpanelNotStartedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbStatus1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -223,6 +245,109 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar2.add(buttonDelete2);
 
+        jpanelNotStarted1.setBackground(new java.awt.Color(239, 237, 231));
+
+        tableNotStarted1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane4.setViewportView(tableNotStarted1);
+
+        jToolBar4.setBackground(new java.awt.Color(239, 237, 231));
+        jToolBar4.setRollover(true);
+
+        buttonAdd4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
+        buttonAdd4.setBorder(null);
+        buttonAdd4.setFocusable(false);
+        buttonAdd4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonAdd4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonAdd4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdd4ActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(buttonAdd4);
+
+        buttonEdit4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
+        buttonEdit4.setBorder(null);
+        buttonEdit4.setFocusable(false);
+        buttonEdit4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonEdit4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar4.add(buttonEdit4);
+
+        buttonDelete4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
+        buttonDelete4.setBorder(null);
+        buttonDelete4.setFocusable(false);
+        buttonDelete4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonDelete4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar4.add(buttonDelete4);
+
+        jLabel4.setText("Task:");
+
+        jLabel5.setText("Course");
+
+        jLabel6.setText("Status");
+
+        cbCourse2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCourse2ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpanelNotStarted1Layout = new javax.swing.GroupLayout(jpanelNotStarted1);
+        jpanelNotStarted1.setLayout(jpanelNotStarted1Layout);
+        jpanelNotStarted1Layout.setHorizontalGroup(
+            jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelNotStarted1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jToolBar4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpanelNotStarted1Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpanelNotStarted1Layout.createSequentialGroup()
+                        .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldTask2)
+                            .addGroup(jpanelNotStarted1Layout.createSequentialGroup()
+                                .addComponent(cbCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        jpanelNotStarted1Layout.setVerticalGroup(
+            jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelNotStarted1Layout.createSequentialGroup()
+                .addComponent(jToolBar4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(fieldTask2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(cbCourse2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStarted1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(cbStatus2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jpanelProgressLayout = new javax.swing.GroupLayout(jpanelProgress);
         jpanelProgress.setLayout(jpanelProgressLayout);
         jpanelProgressLayout.setHorizontalGroup(
@@ -233,14 +358,24 @@ public class FormLists extends javax.swing.JFrame {
                     .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
                 .addContainerGap())
+            .addGroup(jpanelProgressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelProgressLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpanelNotStarted1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jpanelProgressLayout.setVerticalGroup(
             jpanelProgressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelProgressLayout.createSequentialGroup()
-                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jpanelProgressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelProgressLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpanelNotStarted1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("In Progress", jpanelProgress);
@@ -287,6 +422,109 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar3.add(buttonDelete3);
 
+        jpanelNotStarted2.setBackground(new java.awt.Color(239, 237, 231));
+
+        tableNotStarted2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(tableNotStarted2);
+
+        jToolBar5.setBackground(new java.awt.Color(239, 237, 231));
+        jToolBar5.setRollover(true);
+
+        buttonAdd5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
+        buttonAdd5.setBorder(null);
+        buttonAdd5.setFocusable(false);
+        buttonAdd5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonAdd5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonAdd5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAdd5ActionPerformed(evt);
+            }
+        });
+        jToolBar5.add(buttonAdd5);
+
+        buttonEdit5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
+        buttonEdit5.setBorder(null);
+        buttonEdit5.setFocusable(false);
+        buttonEdit5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonEdit5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(buttonEdit5);
+
+        buttonDelete5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
+        buttonDelete5.setBorder(null);
+        buttonDelete5.setFocusable(false);
+        buttonDelete5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        buttonDelete5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar5.add(buttonDelete5);
+
+        jLabel7.setText("Task:");
+
+        jLabel8.setText("Course");
+
+        jLabel9.setText("Status");
+
+        cbCourse3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbCourse3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpanelNotStarted2Layout = new javax.swing.GroupLayout(jpanelNotStarted2);
+        jpanelNotStarted2.setLayout(jpanelNotStarted2Layout);
+        jpanelNotStarted2Layout.setHorizontalGroup(
+            jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelNotStarted2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jToolBar5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpanelNotStarted2Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbStatus3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jpanelNotStarted2Layout.createSequentialGroup()
+                        .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(fieldTask3)
+                            .addGroup(jpanelNotStarted2Layout.createSequentialGroup()
+                                .addComponent(cbCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
+        );
+        jpanelNotStarted2Layout.setVerticalGroup(
+            jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelNotStarted2Layout.createSequentialGroup()
+                .addComponent(jToolBar5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(fieldTask3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(cbCourse3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpanelNotStarted2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cbStatus3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanelCompletedLayout = new javax.swing.GroupLayout(jPanelCompleted);
         jPanelCompleted.setLayout(jPanelCompletedLayout);
         jPanelCompletedLayout.setHorizontalGroup(
@@ -297,14 +535,24 @@ public class FormLists extends javax.swing.JFrame {
                     .addComponent(jToolBar3, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addContainerGap())
+            .addGroup(jPanelCompletedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelCompletedLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpanelNotStarted2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanelCompletedLayout.setVerticalGroup(
             jPanelCompletedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCompletedLayout.createSequentialGroup()
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(jPanelCompletedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelCompletedLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jpanelNotStarted2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Completed", jPanelCompleted);
@@ -330,12 +578,59 @@ public class FormLists extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonAdd3ActionPerformed
 
     private void buttonAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd1ActionPerformed
+        String taskDesc = fieldTask1.getText();
+        int indexStatus = cbStatus1.getSelectedIndex();
+        String status = cbStatus1.getItemAt(indexStatus);
+        
+        try {
+            if (taskDesc.equals("")) {
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Please write a task",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                this.fieldTask1.requestFocus();
+            } else {
 
+                Task a = new Task(
+                        this.userID,
+                        fieldTask1.getText(),
+                        StatusTask.valueOf(status)
+                );
+                if (taskD.saveTask(a)) {
+                    JOptionPane.showMessageDialog(this, "Task saved",
+                            "Autor", JOptionPane.INFORMATION_MESSAGE);
+                    fillTable();
+                } else {
+                    JOptionPane.showMessageDialog(this, "There was an error",
+                            "Autor", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+
+        } catch (HeadlessException ex) {
+
+        }
     }//GEN-LAST:event_buttonAdd1ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void cbCourse1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCourse1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_cbCourse1ActionPerformed
+
+    private void buttonAdd4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAdd4ActionPerformed
+
+    private void cbCourse2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCourse2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCourse2ActionPerformed
+
+    private void buttonAdd5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonAdd5ActionPerformed
+
+    private void cbCourse3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbCourse3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbCourse3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,32 +672,57 @@ public class FormLists extends javax.swing.JFrame {
     private javax.swing.JButton buttonAdd1;
     private javax.swing.JButton buttonAdd2;
     private javax.swing.JButton buttonAdd3;
+    private javax.swing.JButton buttonAdd4;
+    private javax.swing.JButton buttonAdd5;
     private javax.swing.JButton buttonDelete1;
     private javax.swing.JButton buttonDelete2;
     private javax.swing.JButton buttonDelete3;
+    private javax.swing.JButton buttonDelete4;
+    private javax.swing.JButton buttonDelete5;
     private javax.swing.JButton buttonEdit1;
     private javax.swing.JButton buttonEdit2;
     private javax.swing.JButton buttonEdit3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton buttonEdit4;
+    private javax.swing.JButton buttonEdit5;
+    private javax.swing.JComboBox<String> cbCourse1;
+    private javax.swing.JComboBox<String> cbCourse2;
+    private javax.swing.JComboBox<String> cbCourse3;
+    private javax.swing.JComboBox<String> cbStatus1;
+    private javax.swing.JComboBox<String> cbStatus2;
+    private javax.swing.JComboBox<String> cbStatus3;
+    private javax.swing.JTextField fieldTask1;
+    private javax.swing.JTextField fieldTask2;
+    private javax.swing.JTextField fieldTask3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanelCompleted;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JToolBar jToolBar3;
+    private javax.swing.JToolBar jToolBar4;
+    private javax.swing.JToolBar jToolBar5;
     private javax.swing.JPanel jpanelNotStarted;
+    private javax.swing.JPanel jpanelNotStarted1;
+    private javax.swing.JPanel jpanelNotStarted2;
     private javax.swing.JPanel jpanelProgress;
     private javax.swing.JTable tableCompleted;
     private javax.swing.JTable tableInProgress;
     private javax.swing.JTable tableNotStarted;
+    private javax.swing.JTable tableNotStarted1;
+    private javax.swing.JTable tableNotStarted2;
     // End of variables declaration//GEN-END:variables
 
     private void fillTable() {
@@ -410,15 +730,14 @@ public class FormLists extends javax.swing.JFrame {
         DefaultTableModel dtmNotStarted = new DefaultTableModel();
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableNotStarted.setModel(dtmNotStarted);
-        
+
         DefaultTableModel dtmInProgress = new DefaultTableModel();
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableInProgress.setModel(dtmInProgress);
-        
+
         DefaultTableModel dtmCompleted = new DefaultTableModel();
         dtmNotStarted.setColumnIdentifiers(columnNames);
         this.tableCompleted.setModel(dtmCompleted);
-        
 
         ArrayList<Task> studentTasks = taskD.getDatafromID(this.userID);
 
@@ -457,15 +776,22 @@ public class FormLists extends javax.swing.JFrame {
         // this.fillcourseNames();
         ArrayList<Course> courses = courseD.getData();
         for (Course course : courses) {
-            jComboBox2.addItem(course.getName());
+            cbCourse1.addItem(course.getName());
+            cbCourse2.addItem(course.getName());
+            cbCourse3.addItem(course.getName());
+
         }
     }
 
     private void fillCbStatus() {
-        jComboBox1.addItem("NotCompleted");
-        jComboBox1.addItem("InProgress");
+        cbStatus1.addItem("NotCompleted");
+        cbStatus1.addItem("InProgress");
+        cbStatus2.addItem("NotCompleted");
+        cbStatus2.addItem("InProgress");
+        cbStatus3.addItem("NotCompleted");
+        cbStatus3.addItem("InProgress");
     }
-   
+
     public void fillcourseNames() {
         courseNames.add("asignatura 1");
         courseNames.add("asignatura 2");

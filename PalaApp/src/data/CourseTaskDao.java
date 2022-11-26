@@ -4,6 +4,7 @@
  */
 package data;
 
+import entities.Course;
 import entities.StatusTask;
 import entities.Task;
 import java.sql.Connection;
@@ -19,26 +20,16 @@ import java.util.logging.Logger;
  *
  * @author Andrea Nunez
  */
-public class TaskDao {
-
+public class CourseTaskDao {
     Connection conn = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-    ArrayList<String> courseNames = new ArrayList<>();
 
-    public void fillcourseNames() {
-        courseNames.add("asignatura 1");
-        courseNames.add("asignatura 2");
-        courseNames.add("asignatura 3");
-        courseNames.add("asignatura 4");
-        courseNames.add("asignatura 5");
-        courseNames.add("asignatura 6");
-    }
 
     public void getRegisters() {
         try {
             conn = Conexion.getConnection();
-            String tSQL = "Select * from Tarea";
+            String tSQL = "Select * from AsignaturaTarea";
             ps = conn.prepareStatement(tSQL, ResultSet.TYPE_SCROLL_SENSITIVE,
                     ResultSet.CONCUR_UPDATABLE, ResultSet.HOLD_CURSORS_OVER_COMMIT);
             rs = ps.executeQuery();
@@ -48,17 +39,15 @@ public class TaskDao {
         }
     }
 
-    public ArrayList<Task> getData() {
+    public ArrayList<Task> getDatafromCourseID(int idCourse, ArrayList<Task> tasks) {
         this.getRegisters();
         ArrayList<Task> result = new ArrayList<>();
         try {
             while (rs.next()) {
-                Task task = new Task(
-                        rs.getInt("EstudianteID"),
-                        rs.getString("Estado"),
-                        StatusTask.valueOf(rs.getString("Descripción"))
+                Task task = new Task(rs.getInt("EstudianteID"),
+                        rs.getString("Nombre"),
+                        StatusTask.valueOf(rs.getString("Estado"))
                 );
-
                 result.add(task);
             }
         } catch (SQLException ex) {
@@ -68,40 +57,15 @@ public class TaskDao {
         return result;
     }
 
-    public ArrayList<Task> getDatafromID(int id) {
-        this.getRegisters();
-        ArrayList<Task> result = new ArrayList<>();
-        try {
-            while (rs.next()) {
-                Task task = new Task(
-                        rs.getInt("EstudianteID"),
-                        rs.getString("Nombre"),
-                        StatusTask.valueOf(rs.getString("Estado"))
-                );
-                if (task.getStudentId() == id) {
-                    result.add(task);
-                }
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
-
-        }
-        return result;
-    }
-
-    public boolean saveTask(Task t) {
+    public boolean saveCourse(Course c, Task t) {
         boolean guardado = false;
         this.getRegisters();
         try {
             Statement st = conn.createStatement();
-
-            rs.moveToInsertRow();
-            rs.updateInt("EstudianteID", t.getStudentId());
-            rs.updateString("Estado", String.valueOf(t.getStatus()));
-            rs.updateString("Nombre", t.getDescription());
-            rs.insertRow();
-            rs.moveToCurrentRow();
-
+                rs.moveToInsertRow();
+                rs.updateString("Nombre", cName);
+                rs.insertRow();
+                rs.moveToCurrentRow();   
             guardado = true;
 
         } catch (SQLException ex) {

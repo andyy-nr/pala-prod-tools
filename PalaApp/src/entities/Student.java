@@ -96,24 +96,6 @@ public class Student {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
 
-    public void logOut() {
-
-    }
-
-    public void logIn() {
-
-    }
-
-    public void SignIn() {
-
-    }
-
-    public void close() {
-
-    }
 
 }//end Student

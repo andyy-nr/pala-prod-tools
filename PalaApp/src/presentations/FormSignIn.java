@@ -254,8 +254,6 @@ public class FormSignIn extends javax.swing.JFrame {
     private boolean isValid(String user, String pw) {
 
         if (isSure(pw) && userSure(user)) {
-            System.out.println("Dentro del if de isValid");
-
             return true;
         }
         return false;
