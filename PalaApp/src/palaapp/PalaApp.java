@@ -16,7 +16,9 @@ public class PalaApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new FormStart().setVisible(true);
+        FormStart palaForm = new FormStart();
+        palaForm.setLocationRelativeTo(null);
+        palaForm.setVisible(true);
     }
     
 }

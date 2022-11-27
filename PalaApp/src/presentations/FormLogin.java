@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 public class FormLogin extends javax.swing.JFrame {
 
     StudentDao stdDao = new StudentDao();
+
     public FormLogin() {
         initComponents();
         this.fieldUsername.requestFocus();
@@ -47,8 +48,8 @@ public class FormLogin extends javax.swing.JFrame {
 
         labelPassword.setText("Password");
 
-        buttonLogin.setText("Log in");
-        buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Ok.png"))); // NOI18N
+        buttonLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
@@ -56,7 +57,9 @@ public class FormLogin extends javax.swing.JFrame {
         });
 
         buttonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Retroceder.png"))); // NOI18N
-        buttonBack.setBorder(null);
+        buttonBack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        buttonBack.setBorderPainted(false);
+        buttonBack.setContentAreaFilled(false);
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBackActionPerformed(evt);
@@ -82,7 +85,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addComponent(buttonBack)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(66, 66, 66)
                 .addComponent(buttonLogin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -100,7 +103,7 @@ public class FormLogin extends javax.swing.JFrame {
                 .addComponent(pwfieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonLogin)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -124,17 +127,34 @@ public class FormLogin extends javax.swing.JFrame {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         this.allCompleted();
+        int ok = 0;
+        int studentId = 0;
         try {
             String user = this.fieldUsername.getText();
             String pw = String.valueOf(this.pwfieldPassword.getPassword());
             ArrayList<Student> stdData = stdDao.getData();
-            for(Student std : stdData){
-                if(std.getUserName().equals(user) && std.getPassword().equals(pw)){
-                    new FormLists(std.getId()).setVisible(true);
-                    this.setVisible(false);
+            for (Student std : stdData) {
+                if (std.getUserName().equals(user) && std.getPassword().equals(pw)) {
+                    ok = 1;
+                    studentId = std.getId();
                 }
             }
-            
+            if (ok == 1) {
+                FormLists formList = new FormLists(studentId);
+                formList.setLocationRelativeTo(null);
+                formList.setVisible(true);
+                
+                this.setVisible(false);
+
+            } else {
+                JOptionPane.showMessageDialog(this, "El nombre de usuario "
+                        + "o contraseña, son incorrectos", "D:", JOptionPane.ERROR_MESSAGE);
+                this.fieldUsername.setText("");
+                this.pwfieldPassword.setText("");
+                this.fieldUsername.requestFocus();
+
+            }
+
         } catch (HeadlessException ex) {
             System.out.println("Ocurrio un error al iniciar sesión: " + ex.getMessage());
         }

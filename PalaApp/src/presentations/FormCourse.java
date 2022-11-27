@@ -17,10 +17,18 @@ import javax.swing.table.DefaultTableModel;
 public class FormCourse extends javax.swing.JFrame {
 
     CourseDao cDao = new CourseDao();
+    int stdId = 0;
 
-    public FormCourse() {
+   
+     public FormCourse() {
         initComponents();
     }
+     
+     public FormCourse(int newId) {
+        initComponents();
+        stdId = newId;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,6 +46,7 @@ public class FormCourse extends javax.swing.JFrame {
         tableCourses = new javax.swing.JTable();
         buttonAdd = new javax.swing.JButton();
         buttonDelete = new javax.swing.JButton();
+        JbtnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,14 +72,14 @@ public class FormCourse extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableCourses);
 
-        buttonAdd.setText("jButton1");
+        buttonAdd.setText("ADD");
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
             }
         });
 
-        buttonDelete.setText("jButton1");
+        buttonDelete.setText("DELETE");
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteActionPerformed(evt);
@@ -91,14 +100,14 @@ public class FormCourse extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldCourse)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(buttonAdd)
+                                .addGap(50, 50, 50)
+                                .addComponent(buttonDelete)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(fieldCourse))
                         .addContainerGap())))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(buttonDelete)
-                .addGap(33, 33, 33)
-                .addComponent(buttonAdd)
-                .addGap(112, 112, 112))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,15 +125,30 @@ public class FormCourse extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        JbtnNext.setText("jButton1");
+        JbtnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtnNextActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(JbtnNext)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(JbtnNext)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,7 +159,7 @@ public class FormCourse extends javax.swing.JFrame {
         if (cName.equals("")) {
             JOptionPane.showMessageDialog(null, "Please write something", ":/", JOptionPane.ERROR_MESSAGE);
         } else {
-            cDao.saveCourse(cName);
+            cDao.saveCourseStd(cName, stdId);
         }
         this.fillTable();
     }//GEN-LAST:event_buttonAddActionPerformed
@@ -160,6 +184,12 @@ public class FormCourse extends javax.swing.JFrame {
         }
         this.fillTable();
     }//GEN-LAST:event_buttonDeleteActionPerformed
+
+    private void JbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnNextActionPerformed
+        FormLists lists = new FormLists();
+        lists.setLocationRelativeTo(null);
+        lists.setVisible(true);
+    }//GEN-LAST:event_JbtnNextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +227,7 @@ public class FormCourse extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JbtnNext;
     private javax.swing.JButton buttonAdd;
     private javax.swing.JButton buttonDelete;
     private javax.swing.JTextField fieldCourse;
@@ -207,17 +238,18 @@ public class FormCourse extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void fillTable() {
-        ArrayList<Course> courses = cDao.getData();
+        ArrayList<Course> courses = cDao.getCourseStdID(stdId);
         DefaultTableModel dtm = new DefaultTableModel() {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
-        String titulos[] = {"Codigo", "Nombre completo"};
+        String titulos[] = {"Codigo", "Asignatura"};
         dtm.setColumnIdentifiers(titulos);
         for (Course c : courses) {
             Object[] fila = new Object[]{
+                c.getID(),
                 c.getName()
             };
 

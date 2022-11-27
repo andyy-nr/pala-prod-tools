@@ -120,6 +120,11 @@ public class FormLists extends javax.swing.JFrame {
 
             }
         ));
+        tableNotStarted.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableNotStartedMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableNotStarted);
 
         jToolBar1.setBackground(new java.awt.Color(239, 237, 231));
@@ -149,6 +154,11 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete1.setFocusable(false);
         buttonDelete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonDelete1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDelete1ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(buttonDelete1);
 
         jLabel1.setText("Task:");
@@ -246,6 +256,11 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete2.setFocusable(false);
         buttonDelete2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonDelete2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDelete2ActionPerformed(evt);
+            }
+        });
         jToolBar2.add(buttonDelete2);
 
         jpanelNotStarted1.setBackground(new java.awt.Color(239, 237, 231));
@@ -425,6 +440,11 @@ public class FormLists extends javax.swing.JFrame {
 
             }
         ));
+        tableNotStarted2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableNotStarted2MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tableNotStarted2);
 
         jToolBar5.setBackground(new java.awt.Color(239, 237, 231));
@@ -453,9 +473,20 @@ public class FormLists extends javax.swing.JFrame {
         buttonDelete5.setFocusable(false);
         buttonDelete5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        buttonDelete5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonDelete5ActionPerformed(evt);
+            }
+        });
         jToolBar5.add(buttonDelete5);
 
         jLabel7.setText("Task:");
+
+        fieldTask3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldTask3ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Course");
 
@@ -655,6 +686,54 @@ public class FormLists extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbCourse3ActionPerformed
 
+    private void buttonDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDelete1ActionPerformed
+        String cName = this.fieldTask1.getText();
+        if (cName.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please select something", ":/", JOptionPane.ERROR_MESSAGE);
+        } else {
+            taskD.deleteTask(cName);
+        }
+        this.fillTable();
+        this.fieldTask1.setText("");
+        this.fieldTask1.requestFocus();
+    }//GEN-LAST:event_buttonDelete1ActionPerformed
+
+    private void buttonDelete2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDelete2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonDelete2ActionPerformed
+
+    private void buttonDelete5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDelete5ActionPerformed
+        // TODO add your handling code here:
+        String cName = fieldTask1.getText();
+        if (cName.equals("")) {
+            JOptionPane.showMessageDialog(null, "Please select something", ":/", JOptionPane.ERROR_MESSAGE);
+        } else {
+            taskD.deleteTask(cName);
+        }
+        this.fillTable();
+        
+    }//GEN-LAST:event_buttonDelete5ActionPerformed
+
+    private void tableNotStarted2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotStarted2MouseClicked
+       
+    }//GEN-LAST:event_tableNotStarted2MouseClicked
+
+    private void fieldTask3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTask3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldTask3ActionPerformed
+
+    private void tableNotStartedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotStartedMouseClicked
+        // TODO add your handling code here:
+         this.tableNotStarted.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (e.getClickCount() == 1) {
+                    getData();
+                }
+            }
+        });
+    }//GEN-LAST:event_tableNotStartedMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -689,6 +768,14 @@ public class FormLists extends javax.swing.JFrame {
                 new FormLists().setVisible(true);
             }
         });
+    }
+    
+    
+    private void getData() {
+        int row = this.tableNotStarted.getSelectedRow();
+        String cName = tableNotStarted.getValueAt(row, 0).toString();
+        fieldTask1.setText(cName);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -795,7 +882,7 @@ public class FormLists extends javax.swing.JFrame {
     private void fillCbCourses() {
 
         // this.fillcourseNames();
-        ArrayList<Course> courses = courseD.getData();
+        ArrayList<Course> courses = courseD.getCourseStdID(userID);
         for (Course course : courses) {
             cbCourse1.addItem(course.getName());
             cbCourse2.addItem(course.getName());
@@ -805,12 +892,15 @@ public class FormLists extends javax.swing.JFrame {
     }
 
     private void fillCbStatus() {
+        cbStatus1.addItem("Select status");
         cbStatus1.addItem("NotStarted");
         cbStatus1.addItem("InProgress");
         cbStatus1.addItem("Completed");
+        cbStatus2.addItem("Select status");
         cbStatus2.addItem("NotStarted");
         cbStatus2.addItem("InProgress");
         cbStatus2.addItem("Completed");
+        cbStatus3.addItem("Select status");
         cbStatus3.addItem("NotStarted");
         cbStatus3.addItem("InProgress");
         cbStatus3.addItem("Completed");

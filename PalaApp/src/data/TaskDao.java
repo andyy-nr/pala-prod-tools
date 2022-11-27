@@ -166,4 +166,36 @@ public class TaskDao {
         }
         return guardado;
     }
+    
+        public boolean deleteTask(String name) {
+        boolean resp = false;
+        this.getRegisters();
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                if (rs.getString("Descripcion").equals(name)) {
+                    rs.deleteRow();
+                    resp = true;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error trying to delete task" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    Conexion.closeConexion(conn);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return resp;
+    }
 }

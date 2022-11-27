@@ -40,7 +40,7 @@ public class FormStart extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(239, 237, 231));
 
-        buttonLogin.setText("Log in");
+        buttonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Log in.png"))); // NOI18N
         buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,7 +48,7 @@ public class FormStart extends javax.swing.JFrame {
             }
         });
 
-        buttonSignin.setText("Sign in");
+        buttonSignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Sign in.png"))); // NOI18N
         buttonSignin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
         buttonSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +70,7 @@ public class FormStart extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonLogin)
                     .addComponent(buttonSignin))
@@ -97,12 +97,17 @@ public class FormStart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
-        new FormLogin().setVisible(true);
+        FormLogin loginForm = new FormLogin();
+        loginForm.setLocationRelativeTo(null);
+        loginForm.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonLoginActionPerformed
 
     private void buttonSigninActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSigninActionPerformed
-        new FormSignIn().setVisible(true);
+        FormSignIn signInForm = new FormSignIn();
+        signInForm.setLocationRelativeTo(null);
+        signInForm.setVisible(true);
+        
         this.setVisible(false);
     }//GEN-LAST:event_buttonSigninActionPerformed
 

@@ -11,6 +11,7 @@ public class Course {
 
     private String name;
     private int CourseID;
+    private int StudentID;
     private ArrayList<Task> tasks;
 
     public Course() {
@@ -25,6 +26,13 @@ public class Course {
         this.name = name;
         this.CourseID = ID;
     }
+    
+    public Course(String name, int ID, int SdID) {
+        this.name = name;
+        this.CourseID = ID;
+        this.StudentID = SdID;
+    }
+    
 
     public Course(String name, ArrayList<Task> tasks) {
         this.name = name;
@@ -54,5 +62,14 @@ public class Course {
     public void setID(int CourseID) {
         this.CourseID = CourseID;
     }
+
+    public int getStudentID() {
+        return StudentID;
+    }
+
+    public void setStudentID(int StudentID) {
+        this.StudentID = StudentID;
+    }
+    
 
 }//end Course

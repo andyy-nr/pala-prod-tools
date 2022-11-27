@@ -62,10 +62,10 @@ public class StudentDao {
         try {
             while (rs.next()) {
                 Student student = new Student(
-                        rs.getInt("EstudianteID"), 
+                        rs.getInt("EstudianteID"),
                         rs.getInt("Estado"),
-                        rs.getString("Nombre"), 
-                        rs.getString("Apellidos"), 
+                        rs.getString("Nombre"),
+                        rs.getString("Apellidos"),
                         rs.getString("Correo"),
                         rs.getString("Nomusuario"),
                         rs.getString("Contraseña"));
@@ -73,8 +73,8 @@ public class StudentDao {
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
-       
-    }
+
+        }
         return result;
     }
 
@@ -124,6 +124,15 @@ public class StudentDao {
         return guardado;
     }
 
+    public int getLastRegisters() {
+        ArrayList<Student> student = new ArrayList<>();
+        student = this.getData();
+        Student lastStudent = student.get(student.size() - 1);
+        int idStd = lastStudent.getId();
+
+        return idStd;
+    }
+
     /*
     public Student getStudentFromID(int id){
         ArrayList<Student> data = this.getData();
@@ -134,5 +143,5 @@ public class StudentDao {
         }
         return null;
     }
-    */
+     */
 }

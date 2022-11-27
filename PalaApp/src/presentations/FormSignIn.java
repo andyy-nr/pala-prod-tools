@@ -18,6 +18,7 @@ public class FormSignIn extends javax.swing.JFrame {
 
     public FormSignIn() {
         initComponents();
+        this.txtFName.requestFocus();
     }
 
     @SuppressWarnings("unchecked")
@@ -169,9 +170,15 @@ public class FormSignIn extends javax.swing.JFrame {
 
                 studentD.addStudent(student);
                 studentD.saveStudent(student);
+                int stdId = studentD.getLastRegisters();
                 // courseD.saveCourse(); 
+                FormCourse courseform = new FormCourse(stdId);
+                this.setVisible(false);
+                courseform.setLocationRelativeTo(null);
+                courseform.setVisible(true);
                 
             }
+            
         }catch(HeadlessException ex){
             System.out.println("Error al intentar guardar: " + ex.getMessage());
         }

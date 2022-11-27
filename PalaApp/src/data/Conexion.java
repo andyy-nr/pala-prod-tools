@@ -14,7 +14,7 @@ public class Conexion {
     private static Connection con = null;
     private static final String URL = "jdbc:sqlserver://localhost;databaseName=PALAactual;Persist Security Info=True;";
     private static final String USER = "sa";
-    private static final String PASSWORD = "1234";
+    private static final String PASSWORD = "123";
     
     //constructor
     private Conexion() {
@@ -76,7 +76,6 @@ public class Conexion {
         if(estaConectado()!=false){
             try{
                 con.close();
-                System.out.println("Cerrando la conexion");
             }catch(SQLException e){
                 e.printStackTrace();
                 System.out.println("Error al cerrar la conexion: "+e.getMessage());
