@@ -72,14 +72,16 @@ public class FormCourse extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableCourses);
 
-        buttonAdd.setText("ADD");
+        buttonAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Add.png"))); // NOI18N
+        buttonAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonAddActionPerformed(evt);
             }
         });
 
-        buttonDelete.setText("DELETE");
+        buttonDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
+        buttonDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDeleteActionPerformed(evt);
@@ -125,7 +127,8 @@ public class FormCourse extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        JbtnNext.setText("jButton1");
+        JbtnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Ok.png"))); // NOI18N
+        JbtnNext.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         JbtnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JbtnNextActionPerformed(evt);
@@ -148,7 +151,7 @@ public class FormCourse extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JbtnNext)
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,7 +189,7 @@ public class FormCourse extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void JbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnNextActionPerformed
-        FormLists lists = new FormLists();
+        FormLists lists = new FormLists(stdId);
         lists.setLocationRelativeTo(null);
         lists.setVisible(true);
     }//GEN-LAST:event_JbtnNextActionPerformed
@@ -245,7 +248,7 @@ public class FormCourse extends javax.swing.JFrame {
                 return false;
             }
         };
-        String titulos[] = {"Codigo", "Asignatura"};
+        String titulos[] = {"Code", "Course"};
         dtm.setColumnIdentifiers(titulos);
         for (Course c : courses) {
             Object[] fila = new Object[]{

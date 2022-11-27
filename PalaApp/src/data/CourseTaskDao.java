@@ -5,7 +5,7 @@
 package data;
 
 import entities.CourseTask;
-import entities.StatusTask;
+
 import entities.Task;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,6 +42,7 @@ public class CourseTaskDao {
 
     public ArrayList<Task> getTasksfromCourseID(int idCourse, int idStd) {
         this.getRegisters();
+        System.out.println("estoy en getTasksfromCourseID"+ idStd);
         ArrayList<Task> tasksInCourse = new ArrayList<>();
         
         int taskID = 0;
@@ -49,6 +50,9 @@ public class CourseTaskDao {
         try {
             while (rs.next()) {
                 if (rs.getInt("AsignaturaID") == idCourse) {
+                    System.out.println("getTaksfromCourseId estudiante id "+ idStd);
+                    System.out.println("getTaksfromCourseId AsignaturaID "+ rs.getInt("AsignaturaID"));
+                    System.out.println("getTaksfromCourseId estudiante id "+ idCourse);
                     taskID = rs.getInt("TareaID");
                     Task oneTask = td.getTaskfromID(taskID, idStd);
                     tasksInCourse.add(oneTask);

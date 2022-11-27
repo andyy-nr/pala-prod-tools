@@ -5,6 +5,7 @@
 package data;
 
 import entities.StatusTask;
+import static entities.StatusTask.NotStarted;
 import entities.Task;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,7 @@ public class TaskDao {
     PreparedStatement ps = null;
     ResultSet rs = null;
     ArrayList<String> courseNames = new ArrayList<>();
+    StatusTask sts = NotStarted;
 
     public void fillcourseNames() {
         courseNames.add("asignatura 1");
@@ -114,14 +116,14 @@ public class TaskDao {
             while (rs.next()) {
                 Task task = new Task(
                         rs.getInt("TareaID"),
-                        stdId,
+                        rs.getInt("EstudianteID"),
                         rs.getString("Descripcion"),
                         StatusTask.valueOf(rs.getString("Estado"))
-                        );
-
-                if (task.getTaskId() == id) {
+                );
+                if (task.getTaskId() == id && task.getStudentId() == stdId) {
                     return task;
                 }
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(StudentDao.class.getName()).log(Level.SEVERE, null, ex);
@@ -166,8 +168,8 @@ public class TaskDao {
         }
         return guardado;
     }
-    
-        public boolean deleteTask(String name) {
+
+    public boolean deleteTask(String name) {
         boolean resp = false;
         this.getRegisters();
         try {

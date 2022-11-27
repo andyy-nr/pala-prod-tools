@@ -131,7 +131,7 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar1.setRollover(true);
 
         buttonAdd1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
-        buttonAdd1.setBorder(null);
+        buttonAdd1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonAdd1.setFocusable(false);
         buttonAdd1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonAdd1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -143,14 +143,14 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar1.add(buttonAdd1);
 
         buttonEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
-        buttonEdit1.setBorder(null);
+        buttonEdit1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonEdit1.setFocusable(false);
         buttonEdit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonEdit1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(buttonEdit1);
 
         buttonDelete1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
-        buttonDelete1.setBorder(null);
+        buttonDelete1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonDelete1.setFocusable(false);
         buttonDelete1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -282,7 +282,7 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar4.setRollover(true);
 
         buttonAdd4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/add.png"))); // NOI18N
-        buttonAdd4.setBorder(null);
+        buttonAdd4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonAdd4.setFocusable(false);
         buttonAdd4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonAdd4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -294,14 +294,14 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar4.add(buttonAdd4);
 
         buttonEdit4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
-        buttonEdit4.setBorder(null);
+        buttonEdit4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonEdit4.setFocusable(false);
         buttonEdit4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonEdit4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar4.add(buttonEdit4);
 
         buttonDelete4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
-        buttonDelete4.setBorder(null);
+        buttonDelete4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonDelete4.setFocusable(false);
         buttonDelete4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -386,7 +386,7 @@ public class FormLists extends javax.swing.JFrame {
             jpanelProgressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanelProgressLayout.createSequentialGroup()
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 247, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jpanelProgressLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,11 +417,13 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar3.setRollover(true);
 
         buttonEdit3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/edit.png"))); // NOI18N
+        buttonEdit3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonEdit3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonEdit3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar3.add(buttonEdit3);
 
         buttonDelete3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Eliminar.png"))); // NOI18N
+        buttonDelete3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonDelete3.setFocusable(false);
         buttonDelete3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         buttonDelete3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -565,7 +567,7 @@ public class FormLists extends javax.swing.JFrame {
             jPanelCompletedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCompletedLayout.createSequentialGroup()
                 .addComponent(jToolBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanelCompletedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,11 +596,12 @@ public class FormLists extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAdd1ActionPerformed
-        String taskDesc = fieldTask1.getText();
-        StatusTask status = StatusTask.valueOf(cbStatus1.getSelectedItem().toString());
-        String course = cbCourse1.getSelectedItem().toString();
-
+        
         try {
+            String taskDesc = fieldTask1.getText();
+            StatusTask status = StatusTask.valueOf(cbStatus1.getSelectedItem().toString());
+            String course = cbCourse1.getSelectedItem().toString();
+
             if (taskDesc.equals("")) {
                 JOptionPane.showMessageDialog(
                         this,
@@ -616,7 +619,7 @@ public class FormLists extends javax.swing.JFrame {
                 if (taskD.saveTask(a)) {
                     JOptionPane.showMessageDialog(this, "Task saved",
                             "task", JOptionPane.INFORMATION_MESSAGE);
-                    
+
                     this.fieldTask1.setText("");
                     this.fieldTask1.requestFocus();
                     savetoCourseTask(a, course);
@@ -711,11 +714,11 @@ public class FormLists extends javax.swing.JFrame {
             taskD.deleteTask(cName);
         }
         this.fillTable();
-        
+
     }//GEN-LAST:event_buttonDelete5ActionPerformed
 
     private void tableNotStarted2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotStarted2MouseClicked
-       
+
     }//GEN-LAST:event_tableNotStarted2MouseClicked
 
     private void fieldTask3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldTask3ActionPerformed
@@ -724,7 +727,7 @@ public class FormLists extends javax.swing.JFrame {
 
     private void tableNotStartedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableNotStartedMouseClicked
         // TODO add your handling code here:
-         this.tableNotStarted.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.tableNotStarted.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if (e.getClickCount() == 1) {
@@ -769,8 +772,7 @@ public class FormLists extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     private void getData() {
         int row = this.tableNotStarted.getSelectedRow();
         String cName = tableNotStarted.getValueAt(row, 0).toString();
@@ -846,34 +848,52 @@ public class FormLists extends javax.swing.JFrame {
 
         DefaultTableModel dtmCompleted = new DefaultTableModel();
         dtmNotStarted.setColumnIdentifiers(columnNames);
+
         this.tableCompleted.setModel(dtmCompleted);
 
-        ArrayList<Course> courses = courseD.getDatawithID();
+        ArrayList<Course> courses = courseD.getCourseStdID(userID);
         ArrayList<Task> tasksfromCourse = new ArrayList<>();
 
         for (Course c : courses) {
-            tasksfromCourse = ctD.getTasksfromCourseID(c.getID(), userID);
+            int idCourse = c.getID();
+            tasksfromCourse = ctD.getTasksfromCourseID(idCourse, userID);
             for (Task task : tasksfromCourse) {
-                switch (task.getStatus()) {
-                    case NotStarted:
-                        Object[] row1 = new Object[]{
-                            task.getDescription(),
-                            c.getName()
-                        };
-                        dtmNotStarted.addRow(row1);
-                    case InProgress:
-                        Object[] row2 = new Object[]{
-                            task.getDescription(),
-                            c.getName()
-                        };
-                        dtmInProgress.addRow(row2);
-                    case Completed:
-                        Object[] row3 = new Object[]{
-                            task.getDescription(),
-                            c.getName()
-                        };
-                        dtmInProgress.addRow(row3);
+
+                if (task.getStatus() == null) {
+                    DefaultTableModel dtm = new DefaultTableModel() {
+                        @Override
+                        public boolean isCellEditable(int row, int column) {
+                            return false;
+                        }
+                    };
+                    String titulos[] = {"Description", "Course"};
+                    dtm.setColumnIdentifiers(titulos);
+
+                } else {
+                    switch (task.getStatus()) {
+                        case NotStarted:
+                            Object[] row1 = new Object[]{
+                                task.getDescription(),
+                                c.getName()
+                            };
+                            dtmNotStarted.addRow(row1);
+                        case InProgress:
+                            Object[] row2 = new Object[]{
+                                task.getDescription(),
+                                c.getName()
+                            };
+                            dtmInProgress.addRow(row2);
+                        case Completed:
+                            Object[] row3 = new Object[]{
+                                task.getDescription(),
+                                c.getName()
+                            };
+                            dtmCompleted.addRow(row3);
+
+                    }
+
                 }
+
             }
         }
 
@@ -892,15 +912,12 @@ public class FormLists extends javax.swing.JFrame {
     }
 
     private void fillCbStatus() {
-        cbStatus1.addItem("Select status");
         cbStatus1.addItem("NotStarted");
         cbStatus1.addItem("InProgress");
         cbStatus1.addItem("Completed");
-        cbStatus2.addItem("Select status");
         cbStatus2.addItem("NotStarted");
         cbStatus2.addItem("InProgress");
         cbStatus2.addItem("Completed");
-        cbStatus3.addItem("Select status");
         cbStatus3.addItem("NotStarted");
         cbStatus3.addItem("InProgress");
         cbStatus3.addItem("Completed");

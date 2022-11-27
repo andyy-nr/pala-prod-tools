@@ -44,19 +44,10 @@ public class Task {
         this.status = status;
     }
 
-    public void edit() {
-
+    public Task(StatusTask status) {
+        this.status = status;
+        
     }
-
-    public void delete() {
-
-    }
-
-    public void move() {
-
-    }
-
-
 
     public String getDescription() {
         return description;
