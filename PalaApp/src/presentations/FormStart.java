@@ -41,7 +41,7 @@ public class FormStart extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(239, 237, 231));
 
         buttonLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Log in.png"))); // NOI18N
-        buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
+        buttonLogin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonLoginActionPerformed(evt);
@@ -49,7 +49,7 @@ public class FormStart extends javax.swing.JFrame {
         });
 
         buttonSignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Sign in.png"))); // NOI18N
-        buttonSignin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
+        buttonSignin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSigninActionPerformed(evt);

@@ -165,6 +165,8 @@ public class FormCourse extends javax.swing.JFrame {
             cDao.saveCourseStd(cName, stdId);
         }
         this.fillTable();
+        this.fieldCourse.setText("");
+        this.fieldCourse.requestFocus();
     }//GEN-LAST:event_buttonAddActionPerformed
 
     private void tableCoursesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCoursesMouseClicked
@@ -186,12 +188,15 @@ public class FormCourse extends javax.swing.JFrame {
             cDao.deleteCourse(cName);
         }
         this.fillTable();
+        this.fieldCourse.setText("");
+        this.fieldCourse.requestFocus();
     }//GEN-LAST:event_buttonDeleteActionPerformed
 
     private void JbtnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtnNextActionPerformed
         FormLists lists = new FormLists(stdId);
         lists.setLocationRelativeTo(null);
         lists.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_JbtnNextActionPerformed
 
     /**
@@ -248,11 +253,10 @@ public class FormCourse extends javax.swing.JFrame {
                 return false;
             }
         };
-        String titulos[] = {"Code", "Course"};
+        String titulos[] = {"Course"};
         dtm.setColumnIdentifiers(titulos);
         for (Course c : courses) {
             Object[] fila = new Object[]{
-                c.getID(),
                 c.getName()
             };
 

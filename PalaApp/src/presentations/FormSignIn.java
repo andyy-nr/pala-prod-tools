@@ -59,8 +59,8 @@ public class FormSignIn extends javax.swing.JFrame {
 
         labelEmail.setText("Email");
 
-        buttonSignin.setText("Sign in");
-        buttonSignin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 237, 231)));
+        buttonSignin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Ok.png"))); // NOI18N
+        buttonSignin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonSignin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonSigninActionPerformed(evt);
@@ -68,7 +68,7 @@ public class FormSignIn extends javax.swing.JFrame {
         });
 
         buttonBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Retroceder.png"))); // NOI18N
-        buttonBack.setBorder(null);
+        buttonBack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         buttonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonBackActionPerformed(evt);
@@ -82,7 +82,7 @@ public class FormSignIn extends javax.swing.JFrame {
             .addGroup(panelSigninLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelSigninLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                     .addComponent(txtLName)
                     .addComponent(txtFName)
                     .addComponent(txtPassword)
@@ -97,12 +97,12 @@ public class FormSignIn extends javax.swing.JFrame {
                     .addComponent(txtUser))
                 .addContainerGap())
             .addGroup(panelSigninLayout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addComponent(buttonSignin)
-                .addContainerGap(102, Short.MAX_VALUE))
-            .addGroup(panelSigninLayout.createSequentialGroup()
                 .addComponent(buttonBack)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(panelSigninLayout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(buttonSignin)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelSigninLayout.setVerticalGroup(
             panelSigninLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,9 +128,9 @@ public class FormSignIn extends javax.swing.JFrame {
                 .addComponent(labelPassword)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonSignin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(buttonSignin)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

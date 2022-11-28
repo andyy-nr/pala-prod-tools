@@ -121,7 +121,11 @@ public class FormLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBackActionPerformed
-        new FormStart().setVisible(true);
+        
+        
+        FormStart start = new FormStart();
+        start.setLocationRelativeTo(null);
+        start.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_buttonBackActionPerformed
 
