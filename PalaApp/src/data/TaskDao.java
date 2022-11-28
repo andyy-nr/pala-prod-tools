@@ -200,4 +200,39 @@ public class TaskDao {
         }
         return resp;
     }
+    
+        public boolean editTask(Task t) {
+        boolean resp = false;
+        this.getRegisters();
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                if (rs.getInt("TareaID") == t.getTaskId()) {
+                    rs.updateString("Descripcion", t.getDescription());
+                    rs.updateString("Estado",t.getStatus().toString());
+                    System.out.println("Estado: "+ t.getStatus().toString());
+                    rs.updateRow();
+                    resp = true;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error editing" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    Conexion.closeConexion(conn);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return resp;
+    }
 }
