@@ -109,7 +109,6 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Estudiante](
 	[EstudianteID] [int] IDENTITY(1,1) NOT NULL,
-	[TableroID] [int] NOT NULL,
 	[Estado] [nvarchar](50) NULL,
 	[Nombre] [nvarchar](50) NULL,
 	[Apellidos] [nvarchar](50) NULL,

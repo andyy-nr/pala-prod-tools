@@ -513,34 +513,43 @@ public class FormLists extends javax.swing.JFrame {
 
         try {
             String taskDesc = fieldTask1.getText();
-            StatusTask status = StatusTask.valueOf(cbStatus1.getSelectedItem().toString());
-            String course = cbCourse1.getSelectedItem().toString();
-
-            if (taskDesc.equals("")) {
+            String statusValidation = cbStatus1.getSelectedItem().toString();
+            if (statusValidation.equals("Select Status")) {
                 JOptionPane.showMessageDialog(
                         this,
-                        "Please write a task",
+                        "Please select a status",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
-                this.fieldTask1.requestFocus();
             } else {
+                StatusTask status = StatusTask.valueOf(statusValidation);
+                String course = cbCourse1.getSelectedItem().toString();
 
-                Task a = new Task(
-                        this.userID,
-                        taskDesc,
-                        status
-                );
-                if (taskD.saveTask(a)) {
-                    JOptionPane.showMessageDialog(this, "Task saved",
-                            "task", JOptionPane.INFORMATION_MESSAGE);
-
-                    this.fieldTask1.setText("");
+                if (taskDesc.equals("")) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Please write a task",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     this.fieldTask1.requestFocus();
-                    savetoCourseTask(a, course);
-                    fillTable();
                 } else {
-                    JOptionPane.showMessageDialog(this, "There was an error",
-                            "task", JOptionPane.WARNING_MESSAGE);
+
+                    Task a = new Task(
+                            this.userID,
+                            taskDesc,
+                            status
+                    );
+                    if (taskD.saveTask(a)) {
+                        JOptionPane.showMessageDialog(this, "Task saved",
+                                "task", JOptionPane.INFORMATION_MESSAGE);
+
+                        this.fieldTask1.setText("");
+                        this.fieldTask1.requestFocus();
+                        savetoCourseTask(a, course);
+                        fillTable();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "There was an error",
+                                "task", JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             }
 
