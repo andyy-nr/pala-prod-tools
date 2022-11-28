@@ -85,6 +85,7 @@ GO
 CREATE TABLE [dbo].[Asignatura](
 	[AsignaturaID] [int] IDENTITY(1,1) NOT NULL,
 	[Nombre] [nvarchar](50) NULL,
+	[EstudianteID] [int] NOT NULL
  CONSTRAINT [PK_Asignatura] PRIMARY KEY CLUSTERED 
 (
 	[AsignaturaID] ASC
@@ -111,9 +112,9 @@ CREATE TABLE [dbo].[Estudiante](
 	[TableroID] [int] NOT NULL,
 	[Estado] [nvarchar](50) NULL,
 	[Nombre] [nvarchar](50) NULL,
-	[Apellidos] [nvarchar](1) NULL,
-	[Correo] [nvarchar](1) NULL,
-	[Nomusuario] [nvarchar](1) NULL,
+	[Apellidos] [nvarchar](50) NULL,
+	[Correo] [nvarchar](50) NULL,
+	[Nomusuario] [nvarchar](50) NULL,
 	[Contraseña] [nvarchar](50) NULL,
  CONSTRAINT [PK_Estudiante] PRIMARY KEY CLUSTERED 
 (
@@ -129,10 +130,8 @@ GO
 CREATE TABLE [dbo].[Tarea](
 	[TareaID] [int] IDENTITY(1,1) NOT NULL,
 	[EstudianteID] [int] NULL,
-	[Estado] [varchar](1) NULL,
+	[Estado] [varchar](20) NULL,
 	[Descripcion] [nvarchar](200) NULL,
-	[Vencimiento] [date] NULL,
-	[T_restante] [nvarchar](1) NULL,
  CONSTRAINT [PK_Tarea] PRIMARY KEY CLUSTERED 
 (
 	[TareaID] ASC
