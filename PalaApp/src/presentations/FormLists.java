@@ -589,7 +589,7 @@ public class FormLists extends javax.swing.JFrame {
         try {
             String taskDesc = fieldTask1.getText();
             String statusValidation = cbStatus1.getSelectedItem().toString();
-            if (statusValidation.equals("Select Status")) {
+            if (statusValidation.equals("Select a Status")) {
                 JOptionPane.showMessageDialog(
                         this,
                         "Please select a status",
