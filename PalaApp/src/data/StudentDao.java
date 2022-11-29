@@ -133,6 +133,57 @@ public class StudentDao {
         return idStd;
     }
 
+    public Student getStudent(int id) {
+        ArrayList<Student> student = new ArrayList<>();
+        student = this.getData();
+        for (Student std : student) {
+            if (std.getId() == id) {
+                return std;
+            }
+        }
+
+        return null;
+    }
+    
+    public boolean editStudent(Student s) {
+        boolean resp = false;
+        this.getRegisters();
+        try {
+            rs.beforeFirst();
+            while (rs.next()) {
+                if (rs.getInt("EstudianteID") == s.getId()) {
+                    rs.updateInt("Estado", s.getStatus());
+                    rs.updateString("Nombre", s.getName());
+                    rs.updateString("Apellidos",s.getLastNames());
+                    rs.updateString("Correo",s.getEmail());
+                    rs.updateString("Nomusuario",s.getUserName());
+                    rs.updateString("Contraseña",s.getPassword());
+
+                    rs.updateRow();
+                    resp = true;
+                    break;
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error editing" + ex.getMessage());
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (conn != null) {
+                    Conexion.closeConexion(conn);
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return resp;
+    }
+
     /*
     public Student getStudentFromID(int id){
         ArrayList<Student> data = this.getData();

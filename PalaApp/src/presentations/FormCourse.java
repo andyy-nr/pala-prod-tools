@@ -27,6 +27,7 @@ public class FormCourse extends javax.swing.JFrame {
      public FormCourse(int newId) {
         initComponents();
         stdId = newId;
+        this.fieldCourse.requestFocus();
     }
     
 
@@ -173,7 +174,7 @@ public class FormCourse extends javax.swing.JFrame {
         tableCourses.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                if (e.getClickCount() == 2) {
+                if (e.getClickCount() == 1) {
                     getData();
                 }
             }

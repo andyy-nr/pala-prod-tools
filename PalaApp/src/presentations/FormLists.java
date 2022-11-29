@@ -57,6 +57,7 @@ public class FormLists extends javax.swing.JFrame {
         buttonAdd1 = new javax.swing.JButton();
         buttonEdit1 = new javax.swing.JButton();
         buttonDelete1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         fieldTask1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -68,6 +69,7 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar4 = new javax.swing.JToolBar();
         buttonEdit4 = new javax.swing.JButton();
         buttonDelete4 = new javax.swing.JButton();
+        usuarioBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         fieldTask2 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -82,6 +84,7 @@ public class FormLists extends javax.swing.JFrame {
         jToolBar3 = new javax.swing.JToolBar();
         buttonEdit3 = new javax.swing.JButton();
         buttonDelete3 = new javax.swing.JButton();
+        usuarioBtn2 = new javax.swing.JButton();
         jpanelNotStarted2 = new javax.swing.JPanel();
         cbCourse3 = new javax.swing.JComboBox<>();
         cbStatus3 = new javax.swing.JComboBox<>();
@@ -156,6 +159,18 @@ public class FormLists extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(buttonDelete1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Usuario.png"))); // NOI18N
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
 
         jLabel1.setText("Task:");
 
@@ -249,6 +264,18 @@ public class FormLists extends javax.swing.JFrame {
             }
         });
         jToolBar4.add(buttonDelete4);
+
+        usuarioBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Usuario.png"))); // NOI18N
+        usuarioBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        usuarioBtn.setFocusable(false);
+        usuarioBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        usuarioBtn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        usuarioBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioBtnActionPerformed(evt);
+            }
+        });
+        jToolBar4.add(usuarioBtn);
 
         jLabel4.setText("Task:");
 
@@ -391,6 +418,18 @@ public class FormLists extends javax.swing.JFrame {
             }
         });
         jToolBar3.add(buttonDelete3);
+
+        usuarioBtn2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/presentations/icons/Usuario.png"))); // NOI18N
+        usuarioBtn2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        usuarioBtn2.setFocusable(false);
+        usuarioBtn2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        usuarioBtn2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        usuarioBtn2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usuarioBtn2ActionPerformed(evt);
+            }
+        });
+        jToolBar3.add(usuarioBtn2);
 
         jpanelNotStarted2.setBackground(new java.awt.Color(239, 237, 231));
 
@@ -756,6 +795,29 @@ public class FormLists extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbStatus3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        FormUser user = new FormUser(this.userID);
+        user.setLocationRelativeTo(null);
+        user.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void usuarioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioBtnActionPerformed
+        // TODO add your handling code here:
+        FormUser user = new FormUser(this.userID);
+        user.setLocationRelativeTo(null);
+        user.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_usuarioBtnActionPerformed
+
+    private void usuarioBtn2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usuarioBtn2ActionPerformed
+        // TODO add your handling code here:
+        FormUser user = new FormUser(this.userID);
+        user.setLocationRelativeTo(null);
+        user.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_usuarioBtn2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -833,6 +895,7 @@ public class FormLists extends javax.swing.JFrame {
     private javax.swing.JTextField fieldTask1;
     private javax.swing.JTextField fieldTask2;
     private javax.swing.JTextField fieldTask3;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -858,6 +921,8 @@ public class FormLists extends javax.swing.JFrame {
     private javax.swing.JTable tableCompleted;
     private javax.swing.JTable tableInProgress;
     private javax.swing.JTable tableNotStarted;
+    private javax.swing.JButton usuarioBtn;
+    private javax.swing.JButton usuarioBtn2;
     // End of variables declaration//GEN-END:variables
 
     private void fillTable() {
